@@ -32,7 +32,7 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
     return $response;
 });
 
-// require '../src/routes/company.php';
+require '../src/routes/area.php';
 // require '../src/routes/customer.php';
 require '../src/routes/user.php';
 require '../src/routes/product.php';

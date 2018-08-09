@@ -34,7 +34,7 @@
 
 		public static function retrieve($id){
 			$obj = parent::retrieve($id);
-			$obj->area =  ModelArea::retrieve($id);
+			$obj->area =  ModelArea::retrieve($user->area_id);
 			return $obj;
 		}
 
@@ -47,7 +47,7 @@
 			);
 			if (isset($obj[0])) {
 				$user = $obj[0];
-				$user->area =  ModelArea::retrieve($user->company_id);
+				$user->area =  ModelArea::retrieve($user->area_id);
 				return $user;
 			}
 		}

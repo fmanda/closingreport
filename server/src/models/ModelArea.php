@@ -4,7 +4,7 @@
 	class ModelArea extends BaseModel{
 		public static function getFields(){
 			return array(
-				"uid", "nama"
+				"uid", "kode", "nama"
 			);
 		}
 

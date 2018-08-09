@@ -26,8 +26,8 @@
 			return {
 				logining: false,
 				ruleForm2: {
-				account: 'fmanda',
-				checkPass: 'fmanda'
+				account: 'admin',
+				checkPass: 'admin'
 			},
 			rules2: {
 				account: [
@@ -52,15 +52,15 @@
 						//NProgress.start();
 						var loginParams = { user_name: this.ruleForm2.account, password: this.ruleForm2.checkPass };
 						var vm = this;
-						axios.post(CONFIG.rest_url + '/login', loginParams)
+						axios.post(CONFIG.rest_url + '/adminlogin', loginParams)
 						.then(function(response) {
 							vm.logining = false;
 							var user = response.data;
 							if (user){
-								console.log(user);
-								vm.$message('welcome ' + user.user_name );
+								console.log(user);								
 								sessionStorage.setItem('user', JSON.stringify(user));
 								vm.$router.push({ path: '/' });
+								vm.$message('welcome ' + user.nama );
 							}else{
 								vm.$message({
 									message: 'User / Password salah',

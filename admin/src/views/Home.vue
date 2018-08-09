@@ -5,18 +5,18 @@
 			:visible.sync="dialogVisible"
 			size="tiny"
 			>
-			<el-select v-model="selectedCompany" filterable placeholder="Select">
+			<!-- <el-select v-model="selectedCompany" filterable placeholder="Select">
 				<el-option
 					v-for="company in companies"
 					:key="company.id"
 					:label="company.name"
 					:value="company.id">
 				</el-option>
-			</el-select>
+			</el-select> -->
 
-			<span slot="footer" class="dialog-footer">
+			<!-- <span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="setCompany">Set Company</el-button>
-			</span>
+			</span> -->
 		</el-dialog>
 
 		<el-col :span="24" class="header">
@@ -30,13 +30,16 @@
 			</el-col>
 
 			<el-col :span="4" class="userinfo">
+				<!-- <span class="el-dropdown-link userinfo-inner"> -->
+					<!-- <img :src="this.sysUserAvatar" />  -->
+					<!-- {{user.nama}} @ {{user.area.nama}} -->
+				<!-- </span> -->
 				<el-dropdown trigger="hover">
 					<span class="el-dropdown-link userinfo-inner">
-						<!-- <img :src="this.sysUserAvatar" />  -->
-						{{user.user_name}} @ {{user.company.name}}
+						{{user.nama}} @ {{user.area.nama}}
 					</span>
 					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item @click.native="selectCompany">Select Company</el-dropdown-item>
+						<!-- <el-dropdown-item @click.native="selectCompany">Select Company</el-dropdown-item> -->
 						<el-dropdown-item divided @click.native="logout">Logout</el-dropdown-item>
 					</el-dropdown-menu>
 				</el-dropdown>
@@ -97,12 +100,14 @@
 			return {
 				debug: true,
 				dialogVisible: false,
-				sysName:'K U M O',
+				sysName:'ADMIN Portal',
 				collapsed: false,
 				user: {
-					name : 'fmanda',
+					name : 'user',
 					avatar : 'sysUserAvatar',
-					company : ''
+					area : {
+						nama : "location"
+					}
 				},
 				selectedCompany: '',
 				form: {
@@ -114,8 +119,8 @@
 					type: [],
 					resource: '',
 					desc: ''
-				},
-				companies : []
+				}
+				// companies : []
 			}
 		},
 		methods: {
@@ -149,35 +154,36 @@
 			showMenu(i,status){
 				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
 			},
-			setCompany(){
-				for (var i=0; i<this.companies.length; i++){
-					if (this.companies[i].id == this.selectedCompany){
-						this.user.company = this.companies[i];
-						break;
-					}
-				}
-				sessionStorage.setItem('user', JSON.stringify(this.user));
-				this.loadSession();
-				this.dialogVisible = false;
-			},
-			selectCompany(){
-				this.dialogVisible = true;
-			},
+			// setCompany(){
+			// 	for (var i=0; i<this.companies.length; i++){
+			// 		if (this.companies[i].id == this.selectedCompany){
+			// 			this.user.company = this.companies[i];
+			// 			break;
+			// 		}
+			// 	}
+			// 	sessionStorage.setItem('user', JSON.stringify(this.user));
+			// 	this.loadSession();
+			// 	this.dialogVisible = false;
+			// },
+			// selectCompany(){
+			// 	this.dialogVisible = true;
+			// },
 			initData(){
-				var vm = this;
-				if (!this.debug) return;
-				var url = CONFIG.rest_url + '/company';
-				axios.get(url).then(function(response) {
-					vm.companies = response.data;
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
+				// var vm = this;
+				// if (!this.debug) return;
+				// var url = CONFIG.rest_url + '/company';
+				// axios.get(url).then(function(response) {
+				// 	vm.companies = response.data;
+				// })
+				// .catch(function(error) {
+				// 	console.log(error);
+				// });
 			},
 			loadSession(){
 				var user = sessionStorage.getItem('user');
 				if (user) {
 					this.user = JSON.parse(user);
+					// console.log(this.user.area.nama);
 				}
 			},
 		},

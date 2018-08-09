@@ -10,16 +10,12 @@
 			>
 		</el-alert>
 		<el-dialog
-			title="Input Company"
+			title="Input Area"
 			:visible.sync="dialogVisible"
 			size="tiny"
 			>
-			<el-input placeholder="Company Name" v-model="form.name"></el-input>
-			<el-input type="textarea" placeholder="Address" v-model="form.address" style="margin-bottom:10px"></el-input>
-			<el-input placeholder="Contact Person" v-model="form.contact_person"></el-input>
-			<el-input type="tel" placeholder="Phone" v-model="form.phone"></el-input>
-			<el-input type="email"placeholder="Email Address" v-model="form.email"></el-input>
-
+			<el-input placeholder="Kode Area" v-model="form.kode"></el-input>
+			<el-input placeholder="Nama Area" v-model="form.nama"></el-input>
 			<span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="saveData">Confirm</el-button>
 				<el-button @click="dialogVisible = false">Cancel</el-button>
@@ -38,16 +34,10 @@
 				</el-select>
 				<el-button slot="append" icon="search" @click="onSearchClick">Search Data</el-button>
 			</el-input>
-		<!-- </el-row> -->
-
-		<!-- grid -->
 
 		<el-table :data="items"	stripe style="width:100%" border>
 			<el-table-column type="expand">
 				<template scope="scope">
-					<!-- <p>{{scope.row.name}}</p>
-					<p>{{scope.row.address}}</p>
-					<p>{{scope.row.phone}}</p> -->
 					<el-button size="small" icon="edit" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
 					<el-button size="small" icon="delete" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
 				</template>
@@ -61,15 +51,10 @@
 				:label="item.caption"
 				:width="item.width">
 			</el-table-column>
-			<!-- <el-table-column prop="contact_person" label="Contact Person" width="200"></el-table-column>
-			<el-table-column prop="phone" label="Phone" width="150"></el-table-column>
-			<el-table-column prop="address" label="Address"></el-table-column> -->
 		</el-table>
 		<el-row type="flex">
-			<!-- <el-col :span="12"> -->
 				<el-button size="small" icon="plus" type="primary" @click="loadByID(0)" style="margin-top:10px">Tambah</el-button>
-			<!-- </el-col> -->
-			<!-- <el-col :span="12"> -->
+
 				<span style="margin-left:10px">
 					<el-pagination
 						@size-change="onSizeChanged"
@@ -98,20 +83,14 @@
 				dialogVisible : false,
 				items : [],
 				fields : [
-					{fieldname : 'name', caption : 'Company Name', width: 200},
-					{fieldname : 'contact_person', caption : 'Contact Person', width: 200},
-					{fieldname : 'phone', caption : 'Phone Number', width: 200},
-					{fieldname : 'address', caption : 'Address', width: null},
+					{fieldname : 'kode', caption : 'Kode Area', width: 200},
+					{fieldname : 'nama', caption : 'Nama Area', width: 200}					
 				],
-				selectedfield : 'name',
+				selectedfield : 'nama',
 				form : {
 					id: 0,
-					name : '',
-					address : '',
-					phone : '',
-					contact_person : '',
-					email : '',
-					// items : []
+					kode : '',
+					nama : ''
 				},
 				error : {
 					status : false,
@@ -134,7 +113,7 @@
 				if (reset) {
 					this.currentpage = 1;
 				}
-				var url = CONFIG.rest_url + '/company/' + this.pagesize + '/' + this.currentpage + '/';
+				var url = CONFIG.rest_url + '/area/' + this.pagesize + '/' + this.currentpage + '/';
 				var vm = this;
 
 				if (this.keyword != '') url += this.selectedfield + '/' + this.keyword;
@@ -162,16 +141,13 @@
 			loadByID(id){
 				if (id == 0){
 					this.form.id = 0;
-					this.form.name = '';
-					this.form.address = '';
-					this.form.phone = '';
-					this.form.contact_person = '';
-					this.form.email = '';
+					this.form.nama = '';
+					this.form.kode = ''
 					this.dialogVisible = true;
 					return;
 				}
 				var vm = this;
-				axios.get(CONFIG.rest_url + '/company/' + id)
+				axios.get(CONFIG.rest_url + '/area/' + id)
 				.then(function(response) {
 					vm.form = response.data;
 					vm.dialogVisible = true;
@@ -182,7 +158,7 @@
 			},
 			saveData(){
 				var vm = this;
-				axios.post(CONFIG.rest_url + '/company', vm.form)
+				axios.post(CONFIG.rest_url + '/area', vm.form)
 				.then(function(response) {
 					vm.$message('Data berhasil diupdate');
 					vm.refreshData(false);
@@ -218,7 +194,7 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(CONFIG.rest_url + '/company/' + id)
+				axios.delete(CONFIG.rest_url + '/area/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

@@ -5,8 +5,6 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 import App from './App.vue'
 import 'font-awesome/css/font-awesome.min.css'
-import 'devextreme/dist/css/dx.common.css'
-import 'devextreme/dist/css/dx.light.css'
 import locale from 'element-ui/lib/locale/lang/en'
 
 
