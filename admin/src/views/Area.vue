@@ -75,7 +75,7 @@
 
 <script>
 	import axios from 'axios';
-	var CONFIG = require('../../config.json');
+	// var CONFIG = require('../../config.json');
 
 	export default {
 		data () {
@@ -84,7 +84,7 @@
 				items : [],
 				fields : [
 					{fieldname : 'kode', caption : 'Kode Area', width: 200},
-					{fieldname : 'nama', caption : 'Nama Area', width: 200}					
+					{fieldname : 'nama', caption : 'Nama Area', width: 200}
 				],
 				selectedfield : 'nama',
 				form : {
@@ -106,14 +106,14 @@
 
 		},
 		beforeMount(){
-			this.refreshData(true)
+			this.refreshData(true);
 		},
 		methods:{
 			refreshData(reset){
 				if (reset) {
 					this.currentpage = 1;
 				}
-				var url = CONFIG.rest_url + '/area/' + this.pagesize + '/' + this.currentpage + '/';
+				var url = this.$rest_url + '/area/' + this.pagesize + '/' + this.currentpage + '/';
 				var vm = this;
 
 				if (this.keyword != '') url += this.selectedfield + '/' + this.keyword;
@@ -121,7 +121,7 @@
 				axios.get(url)
 				.then(function(response) {
 					vm.items = response.data.data;
-					vm.totalrecord = parseInt(response.data.totalrecord);
+					vm.totalrecord = parseInt(response.data.totalrecord);					
 				})
 				.catch(function(error) {
 					vm.showErrorMessage(error);
@@ -147,7 +147,7 @@
 					return;
 				}
 				var vm = this;
-				axios.get(CONFIG.rest_url + '/area/' + id)
+				axios.get(this.$rest_url + '/area/' + id)
 				.then(function(response) {
 					vm.form = response.data;
 					vm.dialogVisible = true;
@@ -158,7 +158,7 @@
 			},
 			saveData(){
 				var vm = this;
-				axios.post(CONFIG.rest_url + '/area', vm.form)
+				axios.post(this.$rest_url + '/area', vm.form)
 				.then(function(response) {
 					vm.$message('Data berhasil diupdate');
 					vm.refreshData(false);
@@ -194,7 +194,7 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(CONFIG.rest_url + '/area/' + id)
+				axios.delete(this.$rest_url + '/area/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

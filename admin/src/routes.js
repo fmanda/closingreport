@@ -2,13 +2,13 @@
 import Home from './views/Home.vue'
 import NotFound from './views/404.vue'
 // import Info from './views/Info.vue'
-// import Test from './views/Test.vue'
+import User from './views/User.vue'
 import Login from './views/Login.vue'
 import Area from './views/Area.vue'
-// import Units from './views/Units.vue'
+import Material from './views/Material.vue'
 // import Customer from './views/Customer.vue'
 // import CustomerForm from './views/CustomerForm.vue'
-// import Product from './views/Product.vue'
+import Product from './views/Product.vue'
 // import ProductForm from './views/ProductForm.vue'
 // import User from './views/Info.vue'
 // import Order from './views/Order.vue'
@@ -39,10 +39,10 @@ let routes = [
 				name: 'Master',
         iconCls: 'fa fa-tags',
         children: [
-		      { path: '/area', component: Area, name: 'Area', iconCls:'fa fa-building'},
-					// { path: '/units', component: Units, name: 'Units', iconCls:'fa fa-sitemap'},
-					// { path: '/product', component: Product, name: 'Product', iconCls:'fa fa-tags'},
-					// { path: '/customer', component: Customer, name: 'Customer', iconCls:'fa fa-user'},
+			{ path: '/area', component: Area, name: 'Area', iconCls:'fa fa-building'},
+			{ path: '/user', component: User, name: 'User', iconCls:'fa fa-sitemap'},
+			{ path: '/product', component: Product, name: 'Product', iconCls:'fa fa-tags'},
+			{ path: '/material', component: Material, name: 'Material', iconCls:'fa fa-user'},
 					// { path: '/customer/:id', component: CustomerForm, name: 'CustomerForm' , hidden: true },
 					// { path: '/product/:id', component: ProductForm, name: 'ProductForm' , hidden: true },
 					// { path: '/ordercategory', component: OrderCategory, name: 'Order Category', iconCls:'fa fa-tags'},

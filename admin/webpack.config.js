@@ -37,7 +37,17 @@ module.exports = (options = {}) => ({
             limit: 10000
           }
         }]
-      }
+      },
+      // {
+      //   test: /config\.json/,
+      //   use: [{
+      //     loader : 'json-loader',
+      //     // options: {
+      //     //   name: '[path][name].[ext]',
+      //     //   context: ''
+      //     // }
+      //   }]
+      // },
     ]
   },
   plugins: [
@@ -46,7 +56,7 @@ module.exports = (options = {}) => ({
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-  	}),
+  	})
   	// new webpack.ProvidePlugin({
 		// 'window.jquery' : 'jquery',
 		// 'jQuery': 'jquery',

@@ -88,3 +88,30 @@ $app->delete('/user/{id}', function (Request $request, Response $response) {
 			->write($msg);
 	}
 });
+
+$app->get('/user/{limit}/{page}/[{fieldname}/{keyword}]', function ($request, $response, $args) {
+	try{
+		$keyword = '';
+		$fieldname = 'nama';
+		if (isset($args['keyword'])) $keyword = $args['keyword'];
+		if (isset($args['fieldname'])) $fieldname = $args['fieldname'];
+
+		$sql = "select a.*, b.nama as area from users a
+			left join area b on a.area_id=b.id";
+
+		if ($fieldname == "area"){
+			$fieldname = "b.nama";
+		}else{
+			$fieldname = "a.". $fieldname;
+		}
+		$sql = $sql ." where ".$fieldname." like '%" . $keyword ."%'";
+
+		$data = DB::paginateQuery($sql, $args['limit'], $args['page']);
+		return json_encode($data);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});

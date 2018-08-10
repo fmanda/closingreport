@@ -7,9 +7,12 @@ import App from './App.vue'
 import 'font-awesome/css/font-awesome.min.css'
 import locale from 'element-ui/lib/locale/lang/en'
 
+var CONFIG = require('../config.json');
 
 Vue.use(ElementUI,  { locale })
 Vue.use(VueRouter)
+
+Vue.prototype.$rest_url = CONFIG.rest_url;
 
 const router = new VueRouter({
   routes
