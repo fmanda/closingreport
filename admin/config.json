@@ -1,3 +1,4 @@
 {
-	"rest_url": "http://192.168.0.54/server/index.php"
+	"rest_url": "http://192.168.0.54/server/index.php",
+	"projectname" : "ClosingReport"
 }

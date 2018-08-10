@@ -20,7 +20,7 @@
 
 <script>
 	import axios from 'axios';
-	var CONFIG = require('../../config.json');
+	// var CONFIG = require('../../config.json');
   	export default {
 		data() {
 			return {
@@ -52,12 +52,12 @@
 						//NProgress.start();
 						var loginParams = { user_name: this.ruleForm2.account, password: this.ruleForm2.checkPass };
 						var vm = this;
-						axios.post(CONFIG.rest_url + '/adminlogin', loginParams)
+						axios.post(this.$rest_url + '/adminlogin', loginParams)
 						.then(function(response) {
 							vm.logining = false;
 							var user = response.data;
 							if (user){
-								console.log(user);								
+								console.log(user);
 								sessionStorage.setItem('user', JSON.stringify(user));
 								vm.$router.push({ path: '/' });
 								vm.$message('welcome ' + user.nama );
