@@ -11,7 +11,7 @@
 	export default {
 		data(){
 			return{
-				rest_url : 'server.fmapos.com'
+				// rest_url : 'server.fmapos.com'
 			}
 		},
 		name: 'app',

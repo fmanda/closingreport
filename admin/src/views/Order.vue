@@ -81,14 +81,14 @@
 				fields : [
 					{fieldname : 'orderno', caption : 'Order No', width: 120},
 					{fieldname : 'tanggal', caption : 'Tanggal', width: 120},
-					{fieldname : 'area', caption : 'Area', width: 120},
-					{fieldname : 'customer', caption : 'Customer', width: 200},
-					{fieldname : 'phone', caption : 'No Telp', width: 120},
-					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},
-					{fieldname : 'alamat', caption : 'Alamat', width: 200},
 					{fieldname : 'product', caption : 'Layanan', width: 120},
 					{fieldname : 'jenis_order', caption : 'Jenis Order', width: 120},
+					{fieldname : 'area', caption : 'Area', width: 120},
 					{fieldname : 'status', caption : 'Status', width: 120},
+					{fieldname : 'customer', caption : 'Customer', width: 200},
+					{fieldname : 'alamat', caption : 'Alamat', width: 200},
+					{fieldname : 'phone', caption : 'No Telp', width: 120},
+					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},					
 					{fieldname : 'teknisi', caption : 'Teknisi', width: 120}
 				],
 				error : {

@@ -100,7 +100,7 @@
 			return {
 				debug: true,
 				dialogVisible: false,
-				sysName:'ADMIN Portal',
+				sysName:'Admin Portal PP',
 				collapsed: false,
 				user: {
 					name : 'user',
