@@ -9,20 +9,45 @@
 			@close="error.status = false"
 			>
 		</el-alert>
+		<el-dialog
+			title="Input Area"
+			:visible.sync="dialogVisible"
+			size="tiny"
+			>
+			<el-input placeholder="Nama" v-model="form.nama"></el-input>
+			<el-input type="textarea" placeholder="Alamat" v-model="form.alamat"></el-input>
+			<el-input placeholder="No HP" v-model="form.custphone"></el-input>
+			<el-input placeholder="No. KTP" v-model="form.ktpno"></el-input>
+			<el-input placeholder="No Telepon" v-model="form.phone"></el-input>
+			<el-input placeholder="No Internet" v-model="form.inetnumber"></el-input>
+			<p></p>
+			<!-- <el-input placeholder="Role" v-model="form.role"></el-input> -->
+			<!-- <el-form-item label="Category"> -->
+				<el-select v-model="form.area" filterable placeholder="Pilih Area" value-key="id">
+					<el-option v-for="item in areas" :key="item.id" :label="item.nama" :value="item">
+					</el-option>
+				</el-select>
+			<!-- </el-form-item> -->
 
-		<el-input placeholder="Filter Keyword" v-model="keyword">
-			<el-select v-model="selectedfield" placeholder="Filter By" slot="prepend" style="width:180px">
-				<div v-for="item in fields">
-					<el-option v-if="!item.hiddenfilter"
+
+			<span slot="footer" class="dialog-footer">
+				<el-button type="primary" @click="saveData">Confirm</el-button>
+				<el-button @click="dialogVisible = false">Cancel</el-button>
+			</span>
+		</el-dialog>
+		<!-- <h1>{{items}}</h1> -->
+		<!-- <el-row type="flex"> -->
+			<el-input placeholder="Filter Keyword" v-model="keyword">
+				<el-select v-model="selectedfield" placeholder="Filter By" slot="prepend" style="width:180px">
+					<el-option
+						v-for="item in fields"
 						:key="item.fieldname"
 						:label="item.caption"
 						:value="item.fieldname">
 					</el-option>
-				</div>
-
-			</el-select>
-			<el-button slot="append" icon="search" @click="onSearchClick">Search Data</el-button>
-		</el-input>
+				</el-select>
+				<el-button slot="append" icon="search" @click="onSearchClick">Search Data</el-button>
+			</el-input>
 
 		<el-table :data="items"	stripe style="width:100%" border>
 			<el-table-column type="expand">
@@ -42,7 +67,8 @@
 			</el-table-column>
 		</el-table>
 		<el-row type="flex">
-				<el-button size="small" icon="plus" type="primary" @click="handleNew()" style="margin-top:10px">Tambah</el-button>
+				<el-button size="small" icon="plus" type="primary" @click="loadByID(0)" style="margin-top:10px">Tambah</el-button>
+
 				<span style="margin-left:10px">
 					<el-pagination
 						@size-change="onSizeChanged"
@@ -63,50 +89,60 @@
 
 <script>
 	import axios from 'axios';
-	var CONFIG = require('../../config.json');
+	// var CONFIG = require('../../config.json');
 
 	export default {
 		data () {
 			return {
 				dialogVisible : false,
-				selectedCompany : {id : 0},
 				items : [],
 				fields : [
-					{fieldname : 'code', caption : 'Kode', width: 120},
-					{fieldname : 'name', caption : 'Nama', width: 200},
-					{fieldname : 'category', caption : 'Category', width: 120},
-					{fieldname : 'unit_name', caption : 'Unit Name', width: 150}, //hiddenfilter : true},
-					{fieldname : 'address', caption : 'Address', width: null},
+					{fieldname : 'nama', caption : 'Nama', width: 200},
+					{fieldname : 'alamat', caption : 'Alamat', width: null},
+					{fieldname : 'custphone', caption : 'No HP', width: 120},
+					{fieldname : 'phone', caption : 'No Telp', width: 120},
+					{fieldname : 'inetnumber', caption : 'No Internet', width: 140},
+					{fieldname : 'area', caption : 'Area', width: 140},
 				],
+				selectedfield : 'nama',
+				form : {
+					id: 0,
+					nama : '',
+					alamat : '',
+					custphone : '',
+					phone : '',
+					inetnumber : '',
+					ktpno : '',
+					role : '',
+					area : null
+				},
 				error : {
 					status : false,
 					title : 'Error Occured',
 					description : 'Error description'
 				},
-				selectedfield : 'name',
 				currentpage : 1,
 				totalrecord : 1,
 				pagesize : 10,
 				pagesizes : [10,20,50,100],
-				keyword : ''
+				keyword : '',
+				areas : []
 		  	}
 
 		},
 		beforeMount(){
-			var user = sessionStorage.getItem('user');
-			if (user) {
-				user = JSON.parse(user);
-				this.selectedCompany = user.company;
-			}
 			this.refreshData(true);
+			var vm=this;
+			axios.get(this.$rest_url + '/area').then(function(response) {
+				if (response.data)	vm.areas = response.data;
+			})
 		},
 		methods:{
 			refreshData(reset){
 				if (reset) {
 					this.currentpage = 1;
 				}
-				var url = CONFIG.rest_url + '/customerof/' + this.selectedCompany.id
-						+ '/' + this.pagesize + '/' + this.currentpage + '/';
+				var url = this.$rest_url + '/customer/' + this.pagesize + '/' + this.currentpage + '/';
 				var vm = this;
 
 				if (this.keyword != '') url += this.selectedfield + '/' + this.keyword;
@@ -131,7 +167,48 @@
 			onSearchClick(){
 				this.refreshData(true);
 			},
+			loadByID(id){
+				if (id == 0){
+					this.form.id = 0;
+					this.form.nama = '';
+					this.form.alamat = '';
+					this.form.custphone = '';
+					this.form.phone = '';
+					this.form.inetnumber = '';
+					this.form.ktpno = '';
+					this.form.area = null;
+					this.dialogVisible = true;
+					return;
+				}
+				var vm = this;
+				axios.get(this.$rest_url + '/customer/' + id)
+				.then(function(response) {
+					vm.form = response.data;
+					vm.dialogVisible = true;
+				})
+				.catch(function(error) {
+					vm.showErrorMessage(error);
+				});
+			},
+			saveData(){
+				if (!this.form.area){
+					this.showErrorMessage('Area belum dipilih');
+					return;
+				}
 
+				this.form.area_id = this.form.area.id;
+
+				var vm = this;
+				axios.post(this.$rest_url + '/customer', vm.form)
+				.then(function(response) {
+					vm.$message('Data berhasil diupdate');
+					vm.refreshData(false);
+				})
+				.catch(function(error) {
+					vm.showErrorMessage(error);
+				});
+				vm.dialogVisible = false;
+			},
 			showErrorMessage(error){
 				this.error.status = true;
 				this.error.title = error.message;
@@ -142,14 +219,7 @@
 				}
 			},
 			handleEdit(index, item){
-				this.$router.push({
-				    path: '/customer/' + item.id
-				})
-			},
-			handleNew(){
-				this.$router.push({
-				    path: '/customer/0'
-				})
+				this.loadByID(item.id);
 			},
 			handleDelete(index, item){
 				var vm = this;
@@ -165,7 +235,7 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(CONFIG.rest_url + '/customer/' + id)
+				axios.delete(this.$rest_url + '/customer/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);
@@ -183,7 +253,7 @@
 	.el-row {
 		margin-bottom: 5px;
 	}
-	.el-input {
+	.el-input{
 		margin-bottom: 10px;
 	}
 	.el-table{

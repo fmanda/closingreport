@@ -33,11 +33,11 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 });
 
 require '../src/routes/area.php';
-// require '../src/routes/customer.php';
+require '../src/routes/customer.php';
 require '../src/routes/user.php';
 require '../src/routes/product.php';
 require '../src/routes/material.php';
-// require '../src/routes/order.php';
+require '../src/routes/order.php';
 // require '../src/routes/ordercategory.php';
 
 $app->run();

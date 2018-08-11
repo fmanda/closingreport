@@ -76,16 +76,20 @@
 		data () {
 			return {
 				dialogVisible : false,
-				selectedCompany : {id : 0},
 				selectedPeriod : [],
 				items : [],
 				fields : [
 					{fieldname : 'orderno', caption : 'Order No', width: 120},
-					{fieldname : 'orderdate', caption : 'Order Date', width: 120},
-					{fieldname : 'unit_name', caption : 'Unit', width: 120},
-					{fieldname : 'customer', caption : 'Customer', width: null},
-					{fieldname : 'amount', caption : 'Amount', width: 120},
-					{fieldname : 'payment', caption : 'Payment', width: 120}
+					{fieldname : 'tanggal', caption : 'Tanggal', width: 120},
+					{fieldname : 'area', caption : 'Area', width: 120},
+					{fieldname : 'customer', caption : 'Customer', width: 200},
+					{fieldname : 'phone', caption : 'No Telp', width: 120},
+					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},
+					{fieldname : 'alamat', caption : 'Alamat', width: 200},
+					{fieldname : 'product', caption : 'Layanan', width: 120},
+					{fieldname : 'jenis_order', caption : 'Jenis Order', width: 120},
+					{fieldname : 'status', caption : 'Status', width: 120},
+					{fieldname : 'teknisi', caption : 'Teknisi', width: 120}
 				],
 				error : {
 					status : false,
@@ -137,11 +141,11 @@
 			this.selectedPeriod[0] = new Date();
 			this.selectedPeriod[1] = new Date();
 
-			var user = sessionStorage.getItem('user');
-			if (user) {
-				user = JSON.parse(user);
-				this.selectedCompany = user.company;
-			}
+			// var user = sessionStorage.getItem('user');
+			// if (user) {
+			// 	user = JSON.parse(user);
+			// 	this.selectedCompany = user.company;
+			// }
 			this.refreshData(true);
 		},
 		methods:{
@@ -159,8 +163,8 @@
 				var date2 = this.selectedPeriod[1].toISOString().slice(0,10);
 
 
-				var url = CONFIG.rest_url + '/orderof/' + this.selectedCompany.id
-						+ '/' + date1 + '/' + date2 + '/'
+				var url = this.$rest_url + '/order/'
+					 	+ date1 + '/' + date2 + '/'
 					    + this.pagesize + '/' + this.currentpage + '/';
 				var vm = this;
 
@@ -220,7 +224,7 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(CONFIG.rest_url + '/order/' + id)
+				axios.delete(this.$rest_url + '/order/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

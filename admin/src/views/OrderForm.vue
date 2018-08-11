@@ -24,22 +24,22 @@
 
 			<el-row>
 				<el-col :span="8">
-					<el-form-item label="Unit / Cabang" prop="unit_id">
-						<el-select v-model="form.unit_id" filterable placeholder="Select" style="width:80%">
-							<el-option v-for="item in units" :key="item.id"	:label="item.name" :value="item.id">
+					<el-form-item label="Order No" prop="orderno">
+						<el-input v-model="form.orderno" style="width:90%"></el-input>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="Pilh Area" prop="area">
+						<el-select v-model="form.area" filterable placeholder="Select" value-key="id">
+							<el-option v-for="item in areas" :key="item.id" :label="item.nama" :value="item">
 							</el-option>
 						</el-select>
 					</el-form-item>
 				</el-col>
 				<el-col :span="8">
-					<el-form-item label="Order No" prop="orderno">
-						<el-input v-model="form.orderno" style="width:80%"></el-input>
-					</el-form-item>
-				</el-col>
-				<el-col :span="8">
-					<el-form-item label="Order Date" prop="orderdate">
+					<el-form-item label="Tanggal" prop="tanggal">
 						<el-date-picker
-							v-model="form.orderdate"
+							v-model="form.tanggal"
 							placeholder="Pick a Date"
 						>
 						</el-date-picker>
@@ -47,43 +47,99 @@
 				</el-col>
 			</el-row>
 
-			<el-form-item label="Notes">
-				<el-input v-model="form.notes" style="width:85%"></el-input>
+
+			<el-row>
+				<el-col :span="8">
+					<el-form-item label="Jenis Order">
+						<el-radio-group v-model="form.jenis_order">
+							<el-radio-button label="INSTALASI"></el-radio-button>
+						    <el-radio-button label="MIGRASI"></el-radio-button>
+							<el-radio-button label="SERVICE"></el-radio-button>
+						</el-radio-group>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="Pilh Product / Layanan" prop="area">
+						<el-select v-model="form.product" filterable placeholder="Select" value-key="id">
+							<el-option v-for="item in products" :key="item.id" :label="item.nama" :value="item">
+							</el-option>
+						</el-select>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="Buat Customer Baru" prop="area">
+						<el-switch	v-model="newcustomer" on-text="" off-text=""></el-switch>
+					</el-form-item>
+				</el-col>
+			</el-row>
+
+
+			<el-row>
+				<el-col :span="8">
+					<el-form-item label="Pilh Customer" prop="area" v-if="!newcustomer">
+						<el-select v-model="form.customer" filterable placeholder="Select" value-key="id" >
+							<el-option v-for="item in customers" :key="item.id" :label="item.nama" :value="item">
+							</el-option>
+						</el-select>
+					</el-form-item>
+
+					<el-form-item label="Nama Customer" prop="area" style="width:90%" v-if="newcustomer">
+						<el-input placeholder="Nama" v-model="form.customer.nama"></el-input>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="No HP" prop="area" style="width:90%" >
+						<el-input placeholder="No HP" v-model="form.customer.custphone" v-bind:readonly="!newcustomer"></el-input>
+					</el-form-item>
+				</el-col>
+			</el-row>
+
+			<el-row>
+				<el-col :span="8">
+					<el-form-item label="Alamat" prop="area" style="width:90%">
+						<el-input type="textarea" placeholder="Alamat" v-model="form.customer.alamat" v-bind:readonly="!newcustomer"></el-input>
+					</el-form-item>
+
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="No KTP" prop="area" style="width:90%">
+						<el-input placeholder="No KPTI" v-model="form.customer.ktpno" v-bind:readonly="!newcustomer"></el-input>
+					</el-form-item>
+				</el-col>
+			</el-row>
+
+			<el-row>
+				<el-col :span="8">
+					<el-form-item label="No Telepon" prop="phone">
+						<el-input v-model="form.customer.phone" style="width:90%"  v-bind:readonly="!newcustomer"></el-input>
+					</el-form-item>
+				</el-col>
+				<el-col :span="8">
+					<el-form-item label="No Internet" prop="inetnumber">
+						<el-input v-model="form.customer.inetnumber" style="width:90%"  v-bind:readonly="!newcustomer"></el-input>
+					</el-form-item>
+				</el-col>
+			</el-row>
+
+
+			<el-form-item label="Status">
+				<el-radio-group v-model="form.status">
+					<el-radio-button label="OPEN"></el-radio-button>
+				    <el-radio-button label="PROCESS"></el-radio-button>
+					<el-radio-button label="CLOSED"></el-radio-button>
+					<el-radio-button label="PENDING"></el-radio-button>
+					<el-radio-button label="CANCEL"></el-radio-button>
+				</el-radio-group>
+			</el-form-item>
+
+			<el-form-item label="Teknisi" prop="area">
+				<el-select v-model="form.user" filterable placeholder="Select" value-key="id" >
+					<el-option v-for="item in users" :key="item.id" :label="item.nama" :value="item">
+					</el-option>
+				</el-select>
 			</el-form-item>
 		</el-form>
 
-		<div style="width:800px">
-			<table class="el-table"
-				cellspacing="0" border="0" cellpadding="0">
-				<thead><tr>
-					<th style="padding:10px">Product</th>
-					<th style="padding:10px" align="right" width="100px">Price</th>
-					<th style="padding:10px" align="right" width="100px">QTY</th>
-					<th style="padding:10px" align="right" width="100px">Total</th>
-					<th style="padding:10px" align="right" width="30"></th>
-				</tr></thead>
-				<tbody>
-					<tr v-for="item in form.items">
-						<td style="padding:5px">
-							<el-select v-model="item.product_id" filterable placeholder="Select" style="width:100%">
-								<el-option v-for="item in products" :key="item.id"	:label="item.name" :value="item.id">
-								</el-option>
-							</el-select>
-						</td>
-						<td style="padding:5px"><currencyinput v-model="item.price" style="width:100px"></currencyinput></td>
-						<td style="padding:5px"><currencyinput v-model="item.qty" style="width:100px"></currencyinput></td>
-						<td style="padding:5px"><currencyinput v-model="item.total" style="width:100px"></currencyinput></td>
-						<td>
-							<el-button @click="delItem(item)" type="text" style="margin-right:5px">
-								Delete
-							</el-button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<br />
-			<el-button @click="addItem"><i class="fa fa-plus"/> Tambah Item</el-button>
-		</div>
 
 		<br />
 
@@ -93,27 +149,36 @@
 
 <script>
 	import axios from 'axios';
-	import currencyinput from '../components/CurrencyInput.vue'
-	var CONFIG = require('../../config.json');
 
 	export default {
-		components: {
-			currencyinput
-		},
 		data () {
 			return{
-				selectedCompany : {id : 0},
-				units : [],
+				newcustomer : true,
+				areas : [],
 				products : [],
+				users : [],
+				customers : [],
 				imageUrl: '',
 				form : {
 					id: 0,
-					unit_id: '',
 					orderno : '',
-					orderdate : '',
-					amount : 0,
-					tax : 0,
-					items : []
+					tanggal : '',
+					jenis_order : 'INSTALASI',
+					status : 'OPEN',
+					customer : {
+						id : 0,
+						nama : '',
+						alamat : '',
+						custphone : '',
+						ktpno : '',
+						phone : '',
+						inetnumber : ''
+					},
+					phone : '',
+					inetnumber : '',
+					product : null,
+					area : null,
+					user : null
 				},
 				error : {
 					status : false,
@@ -122,79 +187,109 @@
 				},
 				rules : {
 					orderno: [{ required: true, message: 'Please Input Order No' }],
-					orderdate: [{ required: true, message: 'Please Input Order Date' }],
+					tanggal: [{ required: true, message: 'Please Input Order Date' }],
 				}
 			}
 		},
 		beforeMount(){
-			this.initCompany();
 			var vm=this;
-
-			var vm = this;
-			axios.get(CONFIG.rest_url + '/unitsof/' + this.selectedCompany.id).then(function(response) {
-				vm.units = response.data;
+			axios.get(this.$rest_url + '/area').then(function(response) {
+				if (response.data)	vm.areas = response.data;
 			})
-			.catch(function(error) {
-				vm.showErrorMessage(error);
-			});
 
-			var vm = this;
-			axios.get(CONFIG.rest_url + '/productof/' + this.selectedCompany.id).then(function(response) {
-				vm.products = response.data;
+			axios.get(this.$rest_url + '/product').then(function(response) {
+				if (response.data)	vm.products = response.data;
+			})
+
+			axios.get(this.$rest_url + '/user').then(function(response) {
+				if (response.data)	vm.users = response.data;
+			})
+
+			axios.get(this.$rest_url + '/customer').then(function(response) {
+				if (response.data)	vm.customers = response.data;
 			})
 
 			vm.loadByID(vm.$route.params.id);
 
 		},
 		methods:{
-			initCompany(){
-				var user = sessionStorage.getItem('user');
-				if (user) {
-					user = JSON.parse(user);
-					this.selectedCompany = user.company;
-				}
-			},
 			loadByID(id){
 				if (id == 0){
+					this.newcustomer = true;
 					this.form.id = 0;
-					this.form.company_id = this.selectedCompany.id;
 					this.form.orderno = '';
-					this.form.orderdate = new Date();
-					this.form.amount = 0;
-					this.form.tax = 0;
+					this.form.tanggal = new Date();
+					this.form.jenis_order = 'INSTALASI';
+					this.form.status = 'OPEN';
+					this.customer = {
+						id : 0,
+						nama : '',
+						alamat : '',
+						custphone : '',
+						ktpno : '',
+						phone : '',
+						inetnumber : ''
+					};
+					this.phone = '';
+					this.inetnumber = '';
+					this.product = null;
+					this.area = null;
+					this.user = null;
 					return;
 				}
+
 				var vm = this;
-				axios.get(CONFIG.rest_url + '/order/' + id).then(function(response) {
+				axios.get(this.$rest_url + '/order/' + id).then(function(response) {
 					vm.form = response.data;
 
-
-					if (vm.form.company_id != vm.selectedCompany.id){
-						vm.$message.error('This Company has no access for this order id');
-						vm.$router.push({
-						    path: '/order'
-						})
+					if (!vm.form.customer){
+						vm.form.customer = {
+							id : 0,
+							nama : '',
+							alamat : '',
+							custphone : '',
+							ktpno : '',
+							phone : '',
+							inetnumber : ''
+						};
 					}
-
 				})
 				.catch(function(error) {
 					vm.showErrorMessage(error);
 				});
 			},
 			saveData(){
-				this.$refs.form.validate((valid) => {
-					if (valid) {
-						var vm = this;
-						axios.post(CONFIG.rest_url + '/order', vm.form)
-						.then(function(response) {
-							vm.$message('Data berhasil diupdate');
-							vm.back();
-						})
-						.catch(function(error) {
-							vm.showErrorMessage(error);
-						});
-					}
+				if (this.form.orderno == ''){
+					this.showErrorMessage('No Order kosong');
+					return;
+				}
+
+				if (!this.form.area){
+					this.showErrorMessage('Area belum dipilih');
+					return;
+				}
+				if (!this.form.product){
+					this.showErrorMessage('Product belum dipilih');
+					return;
+				}
+				this.form.area_id = this.form.area.id;
+				this.form.product_id = this.form.product.id;
+				if (this.form.customer) this.form.customer_id = this.form.customer.id;
+				if (this.form.user) this.form.user_id = this.form.user.id;
+
+				// this.$refs.form.validate((valid) => {
+				// 	if (valid) {
+				var vm = this;
+				axios.post(this.$rest_url + '/order', vm.form)
+				.then(function(response) {
+					vm.$message('Data berhasil diupdate');
+					vm.back();
+				})
+				.catch(function(error) {
+					vm.showErrorMessage(error);
 				});
+				// 	}
+				// });
 			},
 			back(){
 				this.$router.push({
@@ -209,13 +304,6 @@
 				}else{
 					this.error.description = error;
 				}
-			},
-			addItem(){
-				this.form.items.push({product_id: null,name:'',price:'0',qty:'1',total:'0'});
-			},
-			delItem(item){
-				var idx = this.form.items.indexOf(item);
-				this.form.items.splice(idx,1);
 			}
 
 		}

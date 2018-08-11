@@ -1,10 +1,16 @@
 <?php
 	require_once '../src/models/BaseModel.php';
+	require_once '../src/models/ModelArea.php';
 
 	class ModelCustomer extends BaseModel{
+
+		public static function getTableName(){
+			return 'customers';
+		}
+
 		public static function getFields(){
 			return array(
-				"uid", "company_id", "unit_id", "code", "name", "address", "phone", "email", "category"
+				"uid", "nama", "alamat", "ktpno", "name", "custphone", "area_id", "phone", "inetnumber", "lng", "lat"
 			);
 		}
 
@@ -27,4 +33,9 @@
 			DB::executeSQL($str);
 		}
 
+		public static function retrieve($id){
+			$obj = parent::retrieve($id);
+			$obj->area =  ModelArea::retrieve($obj->area_id);
+			return $obj;
+		}
 	}

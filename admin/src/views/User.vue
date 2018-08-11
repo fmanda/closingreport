@@ -26,7 +26,7 @@
 			<!-- <el-input placeholder="Role" v-model="form.role"></el-input> -->
 			<!-- <el-form-item label="Category"> -->
 				<el-select v-model="form.area" filterable placeholder="Pilih Area" value-key="id">
-					<el-option v-for="item in areas" :value-key="item.id" :label="item.nama" :value="item">
+					<el-option v-for="item in areas" :key="item.id" :label="item.nama" :value="item">
 					</el-option>
 				</el-select>
 			<!-- </el-form-item> -->

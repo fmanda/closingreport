@@ -6,6 +6,18 @@ require_once '../src/models/ModelProduct.php';
 require_once '../src/classes/DB.php';
 
 
+$app->get('/product', function ($request, $response) {
+	try{
+		$list = ModelProduct::retrieveList();
+		return json_encode($list);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
 $app->get('/product/{id}', function ($request, $response) {
 	$id = $request->getAttribute('id');
 	try{
