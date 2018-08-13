@@ -4,9 +4,9 @@
 
 	class ModelCustomer extends BaseModel{
 
-		public static function getTableName(){
-			return 'customers';
-		}
+		// public static function getTableName(){
+		// 	return 'customer';
+		// }
 
 		public static function getFields(){
 			return array(

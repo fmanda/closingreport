@@ -27,8 +27,8 @@ $app->get('/order/{date1}/{date2}/{limit}/{page}/[{fieldname}/{keyword}]', funct
 			d.nama as teknisi
 			from orders a
 			left join area b on a.area_id=b.id
-			left join customers c on a.customer_id=c.id
-			left join products d on a.product_id=d.id
+			left join customer c on a.customer_id=c.id
+			left join product d on a.product_id=d.id
 			left join users e on a.user_id=e.id";
 
 		if ($fieldname == "customer"){

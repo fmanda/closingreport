@@ -3,7 +3,7 @@
 	require_once '../src/models/ModelArea.php';
 
 	class ModelUser extends BaseModel{
-		
+
 		public static function getTableName(){
 			return 'users';
 		}

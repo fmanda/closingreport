@@ -65,7 +65,7 @@ $app->get('/material/{limit}/{page}/[{fieldname}/{keyword}]', function ($request
 		if (isset($args['keyword'])) $keyword = $args['keyword'];
 		if (isset($args['fieldname'])) $fieldname = $args['fieldname'];
 
-		$sql = "select * from materials where ".$fieldname." like '%" . $keyword ."%'";
+		$sql = "select * from material where ".$fieldname." like '%" . $keyword ."%'";
 
 		$data = DB::paginateQuery($sql, $args['limit'], $args['page']);
 		return json_encode($data);
@@ -80,7 +80,7 @@ $app->get('/material/{limit}/{page}/[{fieldname}/{keyword}]', function ($request
 
 $app->get('/merk', function ($request, $response, $args) {
 	try{
-		$sql = "select distinct merk from materials";
+		$sql = "select distinct merk from material";
 		$data = DB::openQuery($sql);
 		return json_encode($data);
 	}catch(Exception $e){
@@ -93,7 +93,7 @@ $app->get('/merk', function ($request, $response, $args) {
 
 $app->get('/satuan', function ($request, $response, $args) {
 	try{
-		$sql = "select distinct satuan from materials";
+		$sql = "select distinct satuan from material";
 		$data = DB::openQuery($sql);
 		return json_encode($data);
 	}catch(Exception $e){

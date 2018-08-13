@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.fma.closingrepclient.model.ModelSetting;
+
 /**
  * Created by fmanda on 08/01/17.
  */
@@ -43,13 +45,13 @@ public class DBHelper extends SQLiteOpenHelper {
 //        db.execSQL(new ModelOrder().generateMetaData());
 //        db.execSQL(new ModelOrderItem().generateMetaData());
 //        db.execSQL(new ModelOrderModifier().generateMetaData());
-//        db.execSQL(new ModelSetting().generateMetaData());
+        db.execSQL(new ModelSetting().generateMetaData());
 //        db.execSQL(new ModelMoneyPreset(0).generateMetaData());
 //        db.execSQL(new ModelOrderPreset().generateMetaData());
 //        db.execSQL(new ModelOrderCategory().generateMetaData());
 //
 //        //init
-//        ModelSetting.initMetaData(db);
+        ModelSetting.initMetaData(db);
 //        ModelMoneyPreset.initMetaData(db);
 //        ModelOrderPreset.initMetaData(db);
     }
@@ -98,7 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //        db.execSQL(new ModelOrder().generateDropMetaData());
 //        db.execSQL(new ModelOrderItem().generateDropMetaData());
 //        db.execSQL(new ModelOrderModifier().generateDropMetaData());
-//        db.execSQL(new ModelSetting().generateDropMetaData());
+        db.execSQL(new ModelSetting().generateDropMetaData());
 //        db.execSQL(new ModelMoneyPreset(0).generateDropMetaData());
 //        db.execSQL(new ModelOrderPreset().generateDropMetaData());
 //        db.execSQL(new ModelOrderCategory().generateDropMetaData());

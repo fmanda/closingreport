@@ -88,7 +88,7 @@
 					{fieldname : 'customer', caption : 'Customer', width: 200},
 					{fieldname : 'alamat', caption : 'Alamat', width: 200},
 					{fieldname : 'phone', caption : 'No Telp', width: 120},
-					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},					
+					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},
 					{fieldname : 'teknisi', caption : 'Teknisi', width: 120}
 				],
 				error : {
@@ -138,8 +138,9 @@
 
 		},
 		beforeMount(){
-			this.selectedPeriod[0] = new Date();
-			this.selectedPeriod[1] = new Date();
+			var date = new Date();
+			this.selectedPeriod[0] =new Date(date.getFullYear(), date.getMonth(), 1);
+			this.selectedPeriod[1] =new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
 			// var user = sessionStorage.getItem('user');
 			// if (user) {

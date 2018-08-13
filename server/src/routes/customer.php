@@ -66,7 +66,7 @@ $app->get('/customer/{limit}/{page}/[{fieldname}/{keyword}]', function ($request
 		if (isset($args['keyword'])) $keyword = $args['keyword'];
 		if (isset($args['fieldname'])) $fieldname = $args['fieldname'];
 
-		$sql = "select a.*, b.nama as area from customers a
+		$sql = "select a.*, b.nama as area from customer a
 			left join area b on a.area_id=b.id";
 
 		if ($fieldname == "area"){

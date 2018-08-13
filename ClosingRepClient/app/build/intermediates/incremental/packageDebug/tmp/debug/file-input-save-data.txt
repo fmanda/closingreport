@@ -1,10 +1,10 @@
 #Internal package file, do not edit.
-#Thu Aug 02 16:48:19 ICT 2018
-1.base=D\:\\Projects\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+#Sun Aug 12 17:29:57 ICT 2018
+1.base=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
 2.path=classes.dex
 0.baseType=DIRECTORY
 3.baseType=DIRECTORY
-2.base=D\:\\Projects\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+2.base=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
 3.set=DEX
 2.set=DEX
 1.baseType=DIRECTORY
@@ -12,8 +12,8 @@
 count=4
 1.set=DEX
 0.path=classes.dex
-3.base=D\:\\Projects\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
+3.base=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
 0.set=DEX
-0.base=D\:\\Projects\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+0.base=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
 2.baseType=DIRECTORY
 1.path=classes.dex

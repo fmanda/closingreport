@@ -2,9 +2,9 @@
 	require_once '../src/models/BaseModel.php';
 
 	class ModelMaterial extends BaseModel{
-		public static function getTableName(){
-			return 'materials';
-		}
+		// public static function getTableName(){
+		// 	return 'materials';
+		// }
 
 		public static function getFields(){
 			return array(

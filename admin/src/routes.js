@@ -13,6 +13,7 @@ import Product from './views/Product.vue'
 // import User from './views/Info.vue'
 import Order from './views/Order.vue'
 import OrderForm from './views/OrderForm.vue'
+import DetailOrder from './views/DetailOrder.vue'
 // import OrderCategory from './views/OrderCategory.vue'
 // { path: '/hidden', component: Info, name: 'Customer', hidden: true  },
 
@@ -56,6 +57,7 @@ let routes = [
         children: [
             { path: '/order', component: Order, name: 'Order', iconCls:'fa fa-credit-card-alt'},
 				{ path: '/order/:id', component: OrderForm, name: 'OrderForm' , hidden: true },
+			{ path: '/detailorder', component: DetailOrder, name: 'Realisasi Order', iconCls:'fa fa-credit-card-alt'},
         ]
     },
 	{

@@ -7,4 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="caption_test">test</string>
+    <string name="setting_title">Setting Aplikasi</string>
+    <string name="rest_api_caption">REST API</string>
+    <string name="btn_reset_setting">Reset Setting</string>
+    <string name="btn_update_setting">Update Setting</string>
 </resources>

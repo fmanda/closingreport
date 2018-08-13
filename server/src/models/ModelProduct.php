@@ -2,9 +2,9 @@
 	require_once '../src/models/BaseModel.php';
 
 	class ModelProduct extends BaseModel{
-		public static function getTableName(){
-			return 'products';
-		}
+		// public static function getTableName(){
+		// 	return 'products';
+		// }
 
 		public static function getFields(){
 			return array(
@@ -29,5 +29,5 @@
 		public static function deleteFromDB($id){
 			$str = static::generateSQLDelete("id=". $id);
 			DB::executeSQL($str);
-		}		
+		}
 	}
