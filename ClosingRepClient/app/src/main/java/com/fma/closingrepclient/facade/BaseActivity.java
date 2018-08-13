@@ -14,13 +14,15 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.fma.closingrepclient.R;
+import com.fma.closingrepclient.controller.ControllerSetting;
 
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-//    public Boolean doCheckLogin = Boolean.TRUE;
+    public Boolean doCheckLogin = Boolean.TRUE;
     protected FrameLayout mainframe;
     long lastPress;
+    private ControllerSetting controllerSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class BaseActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mainframe = (FrameLayout) findViewById(R.id.mainframe);
         setSupportActionBar(toolbar);
+        controllerSetting = new ControllerSetting(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -38,6 +41,16 @@ public class BaseActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        checkLogin();
+    }
+
+    private void checkLogin() {
+        if (!doCheckLogin) return;
+
+        if (controllerSetting.getUserID() == 0){
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        };
     }
 
     @Override
@@ -93,8 +106,8 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent = null;
 
-        if (id == R.id.nav_camera) {
-            intent = new Intent(this, MainActivity.class);
+        if (id == R.id.nav_login) {
+            intent = new Intent(this, LoginActivity.class);
         } else if (id == R.id.nav_gallery) {
             intent = new Intent(this, SettingActivity.class);
         } else if (id == R.id.nav_slideshow) {
@@ -104,7 +117,6 @@ public class BaseActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
         }
 
         if (intent != null){

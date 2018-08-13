@@ -11,4 +11,11 @@
     <string name="rest_api_caption">REST API</string>
     <string name="btn_reset_setting">Reset Setting</string>
     <string name="btn_update_setting">Update Setting</string>
+    <string name="login_user_name">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_title">Please Login First</string>
+    <string name="change_rest_server">Change Rest Server</string>
+    <string name="rest_server_label">REST Server</string>
+    <string name="login">Login</string>
+    <string name="reset_database">Reset Database</string>
 </resources>

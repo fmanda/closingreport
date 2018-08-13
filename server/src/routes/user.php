@@ -36,6 +36,22 @@ $app->post('/teknisilogin', function ($request, $response) {
 	}
 });
 
+
+$app->get('/teknisilogin/{username}/{password}', function ($request, $response) {
+	$username = $request->getAttribute('username');
+	$password =  $request->getAttribute('password');
+	try{
+		$obj = Modeluser::getUserLogin( $username,  $password , 'teknisi');
+		return json_encode($obj);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
+
 $app->get('/user', function ($request, $response) {
 	try{
 		$list = Modeluser::retrieveList();

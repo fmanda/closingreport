@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\a0f1d4a96588396282fdb378182ae255\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\dc8984dc44aadf96a87c954e46e665de\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v4:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\39ef6b12fbd408ea4365a3af8ee9130c\AndroidManifest.xml:17:1-22:12
@@ -22,67 +22,111 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\fma\.gradle\ca
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\479a0726b29821da336d0e33000d6b89\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e00fbf23e9ed6cfbf0cff250409e0f5a\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\c2b22b0e31e5c719b568e47fff6bc3e3\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
 	package
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:5:5-68
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:5:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:6:5-74
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:6:22-71
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:7:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.INTERNET
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:9:5-67
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:9:22-64
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:12:5-71
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:12:22-68
+uses-permission#android.permission.READ_PROFILE
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:13:5-71
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:13:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:14:5-72
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:14:22-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:15:5-79
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:15:22-76
 application
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:5:5-27:19
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:17:5-44:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\54f84a7e20e2a189ef4e4a470ceb83a5\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\54f84a7e20e2a189ef4e4a470ceb83a5\AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.0.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\volley-1.0.0.aar\f19dc3c24320c90516284e6f7b92b3e1\AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.0.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\volley-1.0.0.aar\f19dc3c24320c90516284e6f7b92b3e1\AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:22:9-35
 	android:label
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:20:9-41
 	android:roundIcon
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:21:9-54
 	android:icon
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:19:9-43
 	android:allowBackup
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:18:9-35
 	android:theme
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:23:9-40
 activity#com.fma.closingrepclient.facade.MainActivity
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:12:9-20:20
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:24:9-32:20
 	android:label
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:14:13-45
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:26:13-45
 	android:theme
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:15:13-56
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:27:13-56
 	android:name
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:13:13-48
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:25:13-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:16:13-19:29
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:28:13-31:29
 action#android.intent.action.MAIN
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:17:17-69
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:17:25-66
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:30:27-74
 activity#com.fma.closingrepclient.facade.SettingActivity
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:22:9-26:20
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:34:9-38:20
 	android:label
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:24:13-45
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:36:13-45
 	android:theme
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:25:13-56
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:37:13-56
 	android:name
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:23:13-51
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:35:13-51
+activity#com.fma.closingrepclient.facade.LoginActivity
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:39:9-43:20
+	android:label
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:41:13-45
+	android:theme
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:42:13-56
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:40:13-49
 uses-sdk
 INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
