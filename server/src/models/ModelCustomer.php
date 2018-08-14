@@ -8,6 +8,7 @@
 		// 	return 'customer';
 		// }
 
+
 		public static function getFields(){
 			return array(
 				"uid", "nama", "alamat", "ktpno", "name", "custphone", "area_id", "phone", "inetnumber", "lng", "lat"
@@ -36,6 +37,15 @@
 		public static function retrieve($id){
 			$obj = parent::retrieve($id);
 			$obj->area =  ModelArea::retrieve($obj->area_id);
+			return $obj;
+		}
+
+		public static function retrieveList($filter=''){
+			$sql = 'select a.*, b.uid as area_uid from customer a inner join area b on a.area_id = b.id where 1=1 ';
+			if ($filter<>''){
+				$sql = $sql .' and '. $filter;
+			}
+			$obj = DB::openQuery($sql);
 			return $obj;
 		}
 	}

@@ -41,7 +41,7 @@
 
 		public static function getUserLogin($user, $password, $role){
 			$obj = DB::openQuery(
-				'select * from '. static::getTableName()
+				'select a.*, b.uid as area_uid from users a inner join area b on a.area_id = b.id'
 				.' where username = "'. $user.'"'
 				.' and password = "'. $password.'"'
 				.' and role = "'. $role.'"'

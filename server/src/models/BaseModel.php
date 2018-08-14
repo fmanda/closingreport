@@ -39,11 +39,12 @@
 				$fields = static::getFields();
 				foreach ($fields as $field) {
 					if ($field == "uid") {
-						if (!isset($obj->uid)){
-							$obj->uid = DB::GUID();
-						}else if (($obj->uid == null) || ($obj->uid == '')){
-							$obj->uid = DB::GUID();
-						}
+						$obj->uid = DB::GUID();
+						// if (!isset($obj->uid)){
+						// 	$obj->uid = DB::GUID();
+						// }else if (($obj->uid == null) || ($obj->uid == '')){
+						// 	$obj->uid = DB::GUID();
+						// }
 					}
 
 					if (!isset($obj->{$field})) continue;

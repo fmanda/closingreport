@@ -9,6 +9,8 @@ public class ModelUser extends BaseModel {
     @TableField
     private String uid;
     @TableField
+    private String area_uid;
+    @TableField
     private String username;
     @TableField
     private String nama;
@@ -73,5 +75,13 @@ public class ModelUser extends BaseModel {
 
     public void setArea_id(Integer area_id) {
         this.area_id = area_id;
+    }
+
+    public String getArea_uid() {
+        return area_uid;
+    }
+
+    public void setArea_uid(String area_uid) {
+        this.area_uid = area_uid;
     }
 }

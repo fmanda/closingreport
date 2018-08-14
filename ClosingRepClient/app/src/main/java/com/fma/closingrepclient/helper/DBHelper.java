@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.fma.closingrepclient.model.ModelArea;
+import com.fma.closingrepclient.model.ModelCustomer;
+import com.fma.closingrepclient.model.ModelMaterial;
+import com.fma.closingrepclient.model.ModelOrder;
+import com.fma.closingrepclient.model.ModelProduct;
 import com.fma.closingrepclient.model.ModelSetting;
 import com.fma.closingrepclient.model.ModelUser;
 
@@ -40,22 +45,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        db.execSQL(new ModelProduct().generateMetaData());
-//        db.execSQL(new ModelCustomer().generateMetaData());
-//        db.execSQL(new ModelModifier().generateMetaData());
-//        db.execSQL(new ModelOrder().generateMetaData());
-//        db.execSQL(new ModelOrderItem().generateMetaData());
-//        db.execSQL(new ModelOrderModifier().generateMetaData());
+        db.execSQL(new ModelProduct().generateMetaData());
+        db.execSQL(new ModelCustomer().generateMetaData());
+        db.execSQL(new ModelArea().generateMetaData());
+        db.execSQL(new ModelOrder().generateMetaData());
+        db.execSQL(new ModelMaterial().generateMetaData());
         db.execSQL(new ModelSetting().generateMetaData());
         db.execSQL(new ModelUser().generateMetaData());
-//        db.execSQL(new ModelMoneyPreset(0).generateMetaData());
-//        db.execSQL(new ModelOrderPreset().generateMetaData());
-//        db.execSQL(new ModelOrderCategory().generateMetaData());
-//
-//        //init
         ModelSetting.initMetaData(db);
-//        ModelMoneyPreset.initMetaData(db);
-//        ModelOrderPreset.initMetaData(db);
     }
 
     @Override
@@ -64,49 +61,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public void dummyProduct(SQLiteDatabase db){
-//        for (int i=1; i<=20; i++){
-//            ModelProduct prod = new ModelProduct();
-//            prod.setName("Sample Product " + String.valueOf(i));
-//            prod.setSku("Kode " + String.valueOf(i));
-//            prod.setCategory("makanan");
-//            prod.setPrice((double) Math.round(Math.random()*10000.0));
-//
-//            if (i%2==0){
-//                prod.setCategory("minuman");
-//            }
-//
-//            for (int j=1; j<=5; j++){
-//                ModelModifier item = new ModelModifier();
-//                item.setName("Sample Modifier " + String.valueOf(j));
-//                item.setPrice((double) Math.round(Math.random()*1000.0));
-//                prod.addItem(item);
-//            }
-//            prod.setTax(10);
-//            prod.saveToDBAll(db);
-//
-//            ModelCustomer cust = new ModelCustomer();
-//            cust.setName("Sample Customer " + String.valueOf(i));
-//            cust.setCode("Code " + String.valueOf(i));
-//            cust.setAddress("Sample Customer " + String.valueOf(i));
-//            cust.setCategory("Customer");
-//            cust.saveToDB(db);
-//        };
-
-    }
-
     public void dropAllTables(SQLiteDatabase db){
-//        db.execSQL(new ModelProduct().generateDropMetaData());
-//        db.execSQL(new ModelCustomer().generateDropMetaData());
-//        db.execSQL(new ModelModifier().generateDropMetaData());
-//        db.execSQL(new ModelOrder().generateDropMetaData());
-//        db.execSQL(new ModelOrderItem().generateDropMetaData());
-//        db.execSQL(new ModelOrderModifier().generateDropMetaData());
+        db.execSQL(new ModelProduct().generateDropMetaData());
+        db.execSQL(new ModelCustomer().generateDropMetaData());
+        db.execSQL(new ModelArea().generateDropMetaData());
+        db.execSQL(new ModelOrder().generateDropMetaData());
+        db.execSQL(new ModelMaterial().generateDropMetaData());
         db.execSQL(new ModelSetting().generateDropMetaData());
         db.execSQL(new ModelUser().generateDropMetaData());
-//        db.execSQL(new ModelMoneyPreset(0).generateDropMetaData());
-//        db.execSQL(new ModelOrderPreset().generateDropMetaData());
-//        db.execSQL(new ModelOrderCategory().generateDropMetaData());
     }
 
     public void resetDatabase(SQLiteDatabase db){

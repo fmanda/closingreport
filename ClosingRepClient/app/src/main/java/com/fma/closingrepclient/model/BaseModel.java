@@ -117,6 +117,18 @@ public class BaseModel implements Serializable {
 
     }
 
+    public Boolean loadByUID(SQLiteDatabase db, String aUID){
+        String sql = "select * from " + this.getTableName() + " where uid = '"  + aUID + "'";
+        Cursor cur = db.rawQuery(sql, null);
+        if (cur.moveToNext()) {
+            this.loadFromCursor(cur);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     public void deleteFromDB(SQLiteDatabase db)
     {
         db.execSQL(this.generateSQLDelete());

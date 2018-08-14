@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fma.closingrepclient.R;
@@ -23,25 +25,35 @@ public class BaseActivity extends AppCompatActivity
     protected FrameLayout mainframe;
     long lastPress;
     private ControllerSetting controllerSetting;
+    private TextView txtUserName;
+    private TextView txtArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        mainframe = (FrameLayout) findViewById(R.id.mainframe);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        mainframe =  findViewById(R.id.mainframe);
         setSupportActionBar(toolbar);
         controllerSetting = new ControllerSetting(this);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         checkLogin();
+
+        View headerView = navigationView.getHeaderView(0);
+        txtUserName = headerView.findViewById(R.id.txtUserName);
+        txtArea = headerView.findViewById(R.id.txtArea);
+
+        txtUserName.setText(controllerSetting.getUserName());
+        txtArea.setText(controllerSetting.getArea());
+
     }
 
     private void checkLogin() {
@@ -106,23 +118,33 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent = null;
 
-        if (id == R.id.nav_login) {
+        if (id == R.id.nav_logout) {
             intent = new Intent(this, LoginActivity.class);
-        } else if (id == R.id.nav_gallery) {
-            intent = new Intent(this, SettingActivity.class);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_area) {
+            intent = new Intent(this, AreaActivity.class);
+        } else if (id == R.id.nav_customer) {
+            intent = new Intent(this, CustomerActivity.class);
+        } else if (id == R.id.nav_product) {
+            intent = new Intent(this, ProductActivity.class);
+        } else if (id == R.id.nav_material) {
+            intent = new Intent(this, MaterialActivity.class);
+        } else if (id == R.id.nav_order) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_tracking_customer) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_sync) {
+            intent = new Intent(this, SyncActivity.class);
+        } else if (id == R.id.nav_daily_report) {
 
-        } else if (id == R.id.nav_send) {
         }
 
-        if (intent != null){
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-        }
+//        if (intent != null){
+//            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//            startActivity(intent);
+//        }
+
+        startActivity(intent);
+        this.finish();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

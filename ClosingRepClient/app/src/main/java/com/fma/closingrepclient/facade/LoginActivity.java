@@ -1,7 +1,11 @@
 package com.fma.closingrepclient.facade;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +20,7 @@ import com.fma.closingrepclient.controller.ControllerRest;
 import com.fma.closingrepclient.controller.ControllerSetting;
 import com.fma.closingrepclient.helper.DBHelper;
 import com.fma.closingrepclient.helper.GsonRequest;
+import com.fma.closingrepclient.model.ModelArea;
 import com.fma.closingrepclient.model.ModelUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -69,8 +74,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void resetDatabase() {
-        DBHelper dbHelper = DBHelper.getInstance(this);
-        dbHelper.resetDatabase(dbHelper.getWritableDatabase());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Reset Confirmation");
+        builder.setMessage("Anda yakin melakukan reset database ?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+                        dbHelper.resetDatabase(dbHelper.getWritableDatabase());
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void attemptLogin() {
@@ -117,10 +142,20 @@ public class LoginActivity extends AppCompatActivity {
     private void finishLogin(ModelUser response) {
         Toast.makeText(this, response.getNama(), Toast.LENGTH_SHORT).show();
 
-        controllerSetting.updateSetting( "username",response.getUsername() );
+        ModelArea modelArea = new ModelArea();
+        modelArea.loadByUID(DBHelper.getInstance(this).getReadableDatabase(), response.getArea_uid());
+
+        controllerSetting.updateSetting( "user_name",response.getUsername() );
+
+        //user id pakai id external
         controllerSetting.updateSetting( "user_id", Integer.toString(response.getId()) );
-        controllerSetting.updateSetting( "area_id", Integer.toString(response.getArea_id()) );
-//        finish();
+
+        //area pakai id internetl
+        controllerSetting.updateSetting( "area_id", Integer.toString(modelArea.getId()) );
+        controllerSetting.updateSetting( "area", modelArea.getNama() );
+
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
 
     }
 
