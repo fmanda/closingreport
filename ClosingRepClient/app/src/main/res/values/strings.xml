@@ -18,4 +18,16 @@
     <string name="rest_server_label">REST Server</string>
     <string name="login">Login</string>
     <string name="reset_database">Reset Database</string>
+    <string name="sinkronisasi">Sinkronisasi</string>
+    <string name="master_data">Master Data</string>
+    <string name="data_product">Data Product</string>
+    <string name="data_area">Data Area</string>
+    <string name="data_bahan">Data Bahan</string>
+    <string name="data_customer">Data Customer</string>
+    <string name="input_detail_order">Input Detail Order</string>
+    <string name="laporan_harian">Laporan Harian</string>
+    <string name="tracking_customer">Tracking Customer</string>
+    <string name="account">Account</string>
+    <string name="logout">Logout</string>
+    <string name="closing_report">Closing Report</string>
 </resources>

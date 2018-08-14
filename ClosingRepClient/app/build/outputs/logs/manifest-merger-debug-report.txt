@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\a0f1d4a96588396282fdb378182ae255\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\dc8984dc44aadf96a87c954e46e665de\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v4:27.1.1] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\39ef6b12fbd408ea4365a3af8ee9130c\AndroidManifest.xml:17:1-22:12
@@ -22,20 +22,20 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\fma\.gradle\ca
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\479a0726b29821da336d0e33000d6b89\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e00fbf23e9ed6cfbf0cff250409e0f5a\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\c2b22b0e31e5c719b568e47fff6bc3e3\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
+INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
 	package
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
-		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-46:12
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:1-51:12
 		INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:2:11-69
@@ -76,7 +76,7 @@ ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifes
 	android:name
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:15:22-76
 application
-ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:17:5-44:19
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:17:5-49:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\54f84a7e20e2a189ef4e4a470ceb83a5\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\54f84a7e20e2a189ef4e4a470ceb83a5\AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.0.0] C:\Users\fma\.gradle\caches\transforms-1\files-1.1\volley-1.0.0.aar\f19dc3c24320c90516284e6f7b92b3e1\AndroidManifest.xml:9:5-20
@@ -127,6 +127,14 @@ ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifes
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:42:13-56
 	android:name
 		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:40:13-49
+activity#com.fma.closingrepclient.facade.SyncActivity
+ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:44:9-48:20
+	android:label
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:46:13-45
+	android:theme
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:47:13-56
+	android:name
+		ADDED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml:45:13-48
 uses-sdk
 INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\PROJECT\ClosingReport\ClosingRepClient\app\src\main\AndroidManifest.xml

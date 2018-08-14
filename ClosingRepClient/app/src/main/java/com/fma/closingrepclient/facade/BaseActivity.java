@@ -106,17 +106,24 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent = null;
 
-        if (id == R.id.nav_login) {
+        if (id == R.id.nav_logout) {
             intent = new Intent(this, LoginActivity.class);
-        } else if (id == R.id.nav_gallery) {
-            intent = new Intent(this, SettingActivity.class);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_area) {
+//            intent = new Intent(this, SettingActivity.class);
+        } else if (id == R.id.nav_customer) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_product) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_material) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_order) {
+
+        } else if (id == R.id.nav_tracking_customer) {
+
+        } else if (id == R.id.nav_sync) {
+            intent = new Intent(this, SyncActivity.class);
+        } else if (id == R.id.nav_daily_report) {
+
         }
 
         if (intent != null){

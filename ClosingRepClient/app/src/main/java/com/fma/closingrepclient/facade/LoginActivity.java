@@ -1,7 +1,11 @@
 package com.fma.closingrepclient.facade;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -69,8 +73,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void resetDatabase() {
-        DBHelper dbHelper = DBHelper.getInstance(this);
-        dbHelper.resetDatabase(dbHelper.getWritableDatabase());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Reset Confirmation");
+        builder.setMessage("Anda yakin melakukan reset database ?");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+                        dbHelper.resetDatabase(dbHelper.getWritableDatabase());
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void attemptLogin() {
@@ -120,7 +144,9 @@ public class LoginActivity extends AppCompatActivity {
         controllerSetting.updateSetting( "username",response.getUsername() );
         controllerSetting.updateSetting( "user_id", Integer.toString(response.getId()) );
         controllerSetting.updateSetting( "area_id", Integer.toString(response.getArea_id()) );
-//        finish();
+
+        new Intent(this, MainActivity.class);
+        finish();
 
     }
 

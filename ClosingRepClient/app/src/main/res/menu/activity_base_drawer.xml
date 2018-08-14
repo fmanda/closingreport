@@ -5,34 +5,71 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/ic_lock"
-            android:title="@string/login" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_sync"
+            android:icon="@drawable/ic_menu_sync"
+            android:title="@string/sinkronisasi" />
+        <!--<item-->
+            <!--android:id="@+id/nav_gallery"-->
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+            <!--android:title="Gallery" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_slideshow"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="Slideshow" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Tools" />-->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/master_data">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_area"
+                android:icon="@drawable/ic_menu_area"
+                android:title="@string/data_area" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_product"
+                android:icon="@drawable/ic_menu_product"
+                android:title="@string/data_product" />
+            <item
+                android:id="@+id/nav_material"
+                android:icon="@drawable/ic_menu_material"
+                android:title="@string/data_bahan" />
+            <item
+                android:id="@+id/nav_customer"
+                android:icon="@drawable/ic_menu_customer"
+                android:title="@string/data_customer" />
         </menu>
     </item>
+
+
+    <item android:title="@string/closing_report">
+        <menu>
+            <item
+                android:id="@+id/nav_order"
+                android:icon="@drawable/ic_menu_order"
+                android:title="@string/input_detail_order" />
+            <item
+                android:id="@+id/nav_daily_report"
+                android:icon="@drawable/ic_menu_report"
+                android:title="@string/laporan_harian" />
+            <item
+                android:id="@+id/nav_tracking_customer"
+                android:icon="@drawable/ic_menu_tracking"
+                android:title="@string/tracking_customer" />
+        </menu>
+    </item>
+
+    <item android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_lock"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+
 
 </menu>
