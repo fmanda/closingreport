@@ -47,7 +47,7 @@ public class SyncActivity extends BaseActivity {
             }
         });
 
-        controllerRest.SyncData();
+        controllerRest.SyncData(Boolean.FALSE);
     }
 
     private void addLog(String log){

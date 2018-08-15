@@ -1,29 +1,24 @@
 package com.fma.closingrepclient.controller;
 
+import android.app.Activity;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.RequestFuture;
 import com.fma.closingrepclient.helper.DBHelper;
 import com.fma.closingrepclient.helper.GsonRequest;
-import com.fma.closingrepclient.helper.ImageHelper;
 import com.fma.closingrepclient.model.ModelArea;
 import com.fma.closingrepclient.model.ModelCustomer;
 import com.fma.closingrepclient.model.ModelMaterial;
 import com.fma.closingrepclient.model.ModelProduct;
 
-import org.json.JSONObject;
-
-import java.util.List;
-
-import static android.widget.ImageView.ScaleType.CENTER_CROP;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by fma on 10/26/2017.
@@ -49,36 +44,26 @@ public class ControllerRest {
     private int unit_id;
 
     private ControllerRequest controllerRequest;
-    private Listener listener;
-
-
-
-    public void SyncData(){
-//        //reconcile
-        this.DownloadArea();
-        this.DownloadMaterial();
-        this.DownloadProduct();
-        this.DownloadCustomer();
-
-//        this.UploadCashTrans();
-//
-//        //master
-//        this.DownloadProducts();
-//        this.DownloadOrderCategory();
-//        this.UploadCustomers(); //modified customer only
-//        this.DownloadCustomers();
-//        this.UploadOrders();
-    }
-
-
+    protected Listener listener;
 
     public interface Listener {
         void onSuccess(String msg);
         void onError(String msg);
     }
 
+    private AsyncTaskListener asyncTaskListener;
+
+    public interface AsyncTaskListener {
+        void onProgressUpdate(String msg);
+    }
+
+
     public void setListener(ControllerRest.Listener listener) {
         this.listener = listener;
+    }
+
+    public void setAsyncTaskListenerListener(ControllerRest.AsyncTaskListener listener) {
+        this.asyncTaskListener = listener;
     }
 
     public ControllerRest(Context context) {
@@ -114,132 +99,257 @@ public class ControllerRest {
         return base_url() + "material";
     }
 
-    public void DownloadArea(){
-        GsonRequest<ModelArea[]> gsonReq = new GsonRequest<ModelArea[]>(url_area(), ModelArea[].class,
+    private void log(String s) {
+        asyncTaskListener.onProgressUpdate(s);
+    }
+
+    private void SaveAreas(ModelArea[] areas){
+        try {
+            for (ModelArea area : areas) {
+                area.setIDFromUID(db.getReadableDatabase(), area.getUid());
+                area.saveToDB(db.getWritableDatabase());
+                if (area.getId() == 0) {
+                    log("[area] " + area.getNama() + " inserted");
+                }else{
+                    log("[area] " + area.getNama() + " updated");
+                }
+            }
+        }catch(Exception e){
+            log(e.toString());
+        }
+    }
+
+
+
+    private void SaveMaterials(ModelMaterial[] materials){
+        try {
+            for (ModelMaterial material : materials) {
+                material.setIDFromUID(db.getReadableDatabase(), material.getUid());
+                material.saveToDB(db.getWritableDatabase());
+                if (material.getId() == 0) {
+                    log("[material] " + material.getNama() + " inserted");
+                }else{
+                    log("[material] " + material.getNama() + " updated");
+                }
+                Log.d("","executed");
+            }
+        }catch(Exception e){
+            log(e.toString());
+        }
+    }
+
+    private void SaveProducts(ModelProduct[] products){
+        try {
+            for (ModelProduct product : products) {
+                product.setIDFromUID(db.getReadableDatabase(), product.getUid());
+                product.saveToDB(db.getWritableDatabase());
+                if (product.getId() == 0) {
+                    log("[product] " + product.getNama() + " inserted");
+                }else{
+                    log("[product] " + product.getNama() + " updated");
+                }
+            }
+        }catch(Exception e){
+            log(e.toString());
+        }
+    }
+
+    private void SaveCustomers(ModelCustomer[] customers){
+        try {
+            for (ModelCustomer customer : customers) {
+                customer.setIDFromUID(db.getReadableDatabase(), customer.getUid());
+                if (customer.getArea_id() > 0){
+                    ModelArea modelArea = new ModelArea();
+                    modelArea.setIDFromUID(db.getReadableDatabase(), customer.getArea_uid());
+                    customer.setArea_id(modelArea.getId());
+
+                    log("[customer] " + customer.getNama() + " set area_id");
+                }
+                customer.saveToDB(db.getWritableDatabase());
+                if (customer.getId() == 0) {
+                    log("[customer] " + customer.getNama() + " inserted");
+                }else{
+                    log("[customer] " + customer.getNama() + " updated");
+                }
+            }
+        }catch(Exception e){
+            log(e.toString());
+        }
+    }
+
+    public void SyncData(final Boolean async){
+        AsyncRestRunner runner = new AsyncRestRunner(this);
+        runner.execute(async);
+    }
+
+
+    public void DownloadArea(Boolean async){
+        if (async) {
+            GsonRequest<ModelArea[]> gsonReq = new GsonRequest<>(url_area(), ModelArea[].class,
                 new Response.Listener<ModelArea[]>() {
                     @Override
                     public void onResponse(ModelArea[] response) {
-                        try {
-                            for (ModelArea modelArea : response) {
-                                modelArea.setIDFromUID(db.getReadableDatabase(), modelArea.getUid());
-                                modelArea.saveToDB(db.getWritableDatabase());
-                                if (modelArea.getId() == 0) {
-                                    listener.onSuccess("[area] " + modelArea.getNama() + " inserted");
-                                }else{
-                                    listener.onSuccess("[area] " + modelArea.getNama() + " updated");
-                                }
-                            }
-                        }catch(Exception e){
-                            listener.onError(e.toString());
-                        }
-
+                        SaveAreas(response);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onError(error.toString());
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        log(error.toString());
+                    }
+                }
+            );
+            this.controllerRequest.addToRequestQueue(gsonReq, url_area());
+        }else {
+            RequestFuture<ModelArea[]> future = RequestFuture.newFuture();
+            GsonRequest<ModelArea[]> gsonReq = new GsonRequest<>(url_area(), ModelArea[].class, future, future);
+            this.controllerRequest.addToRequestQueue(gsonReq, url_area());
+
+            try {
+                ModelArea[] response = future.get(10, TimeUnit.SECONDS);
+                SaveAreas(response);
+            } catch (InterruptedException|ExecutionException| TimeoutException e) {
+                log(e.getMessage());
             }
         }
-        );
-        this.controllerRequest.addToRequestQueue(gsonReq,url_area());
     }
 
-    public void DownloadMaterial(){
-        GsonRequest<ModelMaterial[]> gsonReq = new GsonRequest<ModelMaterial[]>(url_material(), ModelMaterial[].class,
+    public void DownloadMaterial(Boolean async){
+        if (async) {
+            GsonRequest<ModelMaterial[]> gsonReq = new GsonRequest<>(url_material(), ModelMaterial[].class,
                 new Response.Listener<ModelMaterial[]>() {
                     @Override
                     public void onResponse(ModelMaterial[] response) {
-                        try {
-                            for (ModelMaterial modelMaterial : response) {
-                                modelMaterial.setIDFromUID(db.getReadableDatabase(), modelMaterial.getUid());
-                                modelMaterial.saveToDB(db.getWritableDatabase());
-                                if (modelMaterial.getId() == 0) {
-                                    listener.onSuccess("[material] " + modelMaterial.getNama() + " inserted");
-                                }else{
-                                    listener.onSuccess("[material] " + modelMaterial.getNama() + " updated");
-                                }
-                            }
-                        }catch(Exception e){
-                            listener.onError(e.toString());
-                        }
-
+                        SaveMaterials(response);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onError(error.toString());
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        log(error.toString());
+                    }
+                }
+            );
+            this.controllerRequest.addToRequestQueue(gsonReq, url_material());
+        }else {
+            RequestFuture<ModelMaterial[]> future = RequestFuture.newFuture();
+            GsonRequest<ModelMaterial[]> gsonReq = new GsonRequest<>(url_material(), ModelMaterial[].class, future, future);
+            this.controllerRequest.addToRequestQueue(gsonReq, url_material());
+
+            try {
+                ModelMaterial[] response = future.get(30, TimeUnit.SECONDS);
+                SaveMaterials(response);
+            } catch (InterruptedException|ExecutionException| TimeoutException e) {
+                log(e.getMessage());
             }
         }
-        );
-        this.controllerRequest.addToRequestQueue(gsonReq,url_area());
     }
 
-    public void DownloadProduct(){
-        GsonRequest<ModelProduct[]> gsonReq = new GsonRequest<ModelProduct[]>(url_product(), ModelProduct[].class,
+    public void DownloadProduct(Boolean async) {
+        if (async) {
+            GsonRequest<ModelProduct[]> gsonReq = new GsonRequest<>(url_product(), ModelProduct[].class,
                 new Response.Listener<ModelProduct[]>() {
                     @Override
                     public void onResponse(ModelProduct[] response) {
-                        try {
-                            for (ModelProduct modelProduct : response) {
-                                modelProduct.setIDFromUID(db.getReadableDatabase(), modelProduct.getUid());
-                                modelProduct.saveToDB(db.getWritableDatabase());
-                                if (modelProduct.getId() == 0) {
-                                    listener.onSuccess("[product] " + modelProduct.getNama() + " inserted");
-                                }else{
-                                    listener.onSuccess("[product] " + modelProduct.getNama() + " updated");
-                                }
-                            }
-                        }catch(Exception e){
-                            listener.onError(e.toString());
-                        }
-
+                        SaveProducts(response);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onError(error.toString());
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        log(error.toString());
+                    }
+                }
+            );
+            this.controllerRequest.addToRequestQueue(gsonReq, url_product());
+//            return Boolean.TRUE;
+        }else {
+            RequestFuture<ModelProduct[]> future = RequestFuture.newFuture();
+            GsonRequest<ModelProduct[]> gsonReq = new GsonRequest<>(url_product(), ModelProduct[].class, future, future);
+            this.controllerRequest.addToRequestQueue(gsonReq, url_product());
+
+            try {
+                ModelProduct[] response = future.get(30, TimeUnit.SECONDS);
+                SaveProducts(response);
+            } catch (InterruptedException|ExecutionException| TimeoutException e) {
+                log(e.getMessage());
             }
         }
-        );
-        this.controllerRequest.addToRequestQueue(gsonReq,url_area());
     }
 
-    public void DownloadCustomer(){
-        GsonRequest<ModelCustomer[]> gsonReq = new GsonRequest<ModelCustomer[]>(url_customer(), ModelCustomer[].class,
+    public void DownloadCustomer(Boolean async){
+        if (async) {
+            GsonRequest<ModelCustomer[]> gsonReq = new GsonRequest<>(url_customer(), ModelCustomer[].class,
                 new Response.Listener<ModelCustomer[]>() {
                     @Override
                     public void onResponse(ModelCustomer[] response) {
-                        try {
-                            for (ModelCustomer modelCustomer : response) {
-                                modelCustomer.setIDFromUID(db.getReadableDatabase(), modelCustomer.getUid());
-                                if (modelCustomer.getArea_id() > 0){
-                                    ModelArea modelArea = new ModelArea();
-                                    modelArea.setIDFromUID(db.getReadableDatabase(), modelCustomer.getArea_uid());
-                                    modelCustomer.setArea_id(modelArea.getId());
-
-                                    listener.onSuccess("[customer] " + modelCustomer.getNama() + " set area_id");
-                                }
-                                modelCustomer.saveToDB(db.getWritableDatabase());
-                                if (modelCustomer.getId() == 0) {
-                                    listener.onSuccess("[customer] " + modelCustomer.getNama() + " inserted");
-                                }else{
-                                    listener.onSuccess("[customer] " + modelCustomer.getNama() + " updated");
-                                }
-                            }
-                        }catch(Exception e){
-                            listener.onError(e.toString());
-                        }
-
+                        SaveCustomers(response);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onError(error.toString());
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        log(error.toString());
+                    }
+                }
+            );
+            this.controllerRequest.addToRequestQueue(gsonReq, url_customer());
+        }else {
+            RequestFuture<ModelCustomer[]> future = RequestFuture.newFuture();
+            GsonRequest<ModelCustomer[]> gsonReq = new GsonRequest<>(url_customer(), ModelCustomer[].class, future, future);
+            this.controllerRequest.addToRequestQueue(gsonReq, url_customer());
+
+            try {
+                ModelCustomer[] response = future.get(30, TimeUnit.SECONDS);
+                SaveCustomers(response);
+            } catch (InterruptedException|ExecutionException| TimeoutException e) {
+                log(e.getMessage());
             }
         }
-        );
-        this.controllerRequest.addToRequestQueue(gsonReq,url_area());
     }
+
+
+
+
+}
+
+
+class AsyncRestRunner extends AsyncTask<Boolean, String, Void> {
+    private ControllerRest controllerRest;
+
+    AsyncRestRunner(ControllerRest controllerRest) {
+        this.controllerRest = controllerRest;
+        this.controllerRest.setAsyncTaskListenerListener(new ControllerRest.AsyncTaskListener() {
+            @Override
+            public void onProgressUpdate(String msg) {
+                publishProgress(msg);
+            }
+        });
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        controllerRest.listener.onSuccess("FINISH");
+    }
+
+    @Override
+    protected void onProgressUpdate(String... values) {
+        controllerRest.listener.onSuccess(values[0]);
+    }
+
+    @Override
+    protected Void doInBackground(Boolean... booleans) {
+        boolean async = booleans[0];
+        controllerRest.DownloadArea(async);
+        controllerRest.DownloadMaterial(async);
+        controllerRest.DownloadProduct(async);
+        controllerRest.DownloadCustomer(async);
+        return null;
+    }
+}
+
+
+
 
     //PRODUCT
 //    public void DownloadProducts(){
@@ -391,4 +501,3 @@ public class ControllerRest {
 //
 //        this.controllerRequest.addToRequestQueue(imageRequest,image_get_url(img_name));
 //    }
-}
