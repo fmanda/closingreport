@@ -1,9 +1,7 @@
 package com.fma.closingrepclient.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
 
 import com.android.volley.Response;
@@ -14,6 +12,7 @@ import com.fma.closingrepclient.helper.GsonRequest;
 import com.fma.closingrepclient.model.ModelArea;
 import com.fma.closingrepclient.model.ModelCustomer;
 import com.fma.closingrepclient.model.ModelMaterial;
+import com.fma.closingrepclient.model.ModelOrder;
 import com.fma.closingrepclient.model.ModelProduct;
 
 import java.util.concurrent.ExecutionException;
@@ -40,8 +39,7 @@ public class ControllerRest {
 //        return mInstance;
 //    }
 
-    private int company_id;
-    private int unit_id;
+    private int user_id;
 
     private ControllerRequest controllerRequest;
     protected Listener listener;
@@ -72,10 +70,12 @@ public class ControllerRest {
         this.controllerRequest = ControllerRequest.getInstance(context);
         this.controllerSetting = new ControllerSetting((this.context));
 
+        this.user_id = controllerSetting.getUserID();
+
 //        this.base_url = "http://" + controllerSetting.getSettingStr("rest_url") + "/";
     }
 
-    public String base_url(){
+    private String base_url(){
         return "http://" + controllerSetting.getSettingStr("rest_url") + "/";
     }
 
@@ -83,20 +83,24 @@ public class ControllerRest {
         return base_url() + "teknisilogin";
     }
 
-    public String url_area(){
+    private String url_area(){
         return base_url() + "area";
     }
 
-    public String url_customer(){
+    private String url_customer(){
         return base_url() + "customer";
     }
 
-    public String url_product(){
+    private String url_product(){
         return base_url() + "product";
     }
 
-    public String url_material(){
+    private String url_material(){
         return base_url() + "material";
+    }
+
+    private String url_order(){
+        return base_url() + "orderof/" + this.user_id;
     }
 
     private void log(String s) {
@@ -163,13 +167,39 @@ public class ControllerRest {
                     modelArea.setIDFromUID(db.getReadableDatabase(), customer.getArea_uid());
                     customer.setArea_id(modelArea.getId());
 
-                    log("[customer] " + customer.getNama() + " set area_id");
+                    log("[customer] " + customer.getNama() + " set relationship");
                 }
                 customer.saveToDB(db.getWritableDatabase());
                 if (customer.getId() == 0) {
                     log("[customer] " + customer.getNama() + " inserted");
                 }else{
                     log("[customer] " + customer.getNama() + " updated");
+                }
+            }
+        }catch(Exception e){
+            log(e.toString());
+        }
+    }
+
+    private void SaveOrders(ModelOrder[] orders){
+        try {
+            for (ModelOrder order : orders) {
+                order.setIDFromUID(db.getReadableDatabase(), order.getUid());
+
+                ModelArea area = new ModelArea(db.getReadableDatabase(), order.getArea_uid());
+                ModelProduct product = new ModelProduct(db.getReadableDatabase(), order.getProduct_uid());
+                ModelCustomer customer = new ModelCustomer(db.getReadableDatabase(), order.getCustomer_uid());
+                log("[order] " + customer.getNama() + " set relationship");
+
+                order.setArea_id(area.getId());
+                order.setProduct_id(product.getId());
+                order.setCustomer_id(customer.getId());
+
+                order.saveToDB(db.getWritableDatabase());
+                if (order.getId() == 0) {
+                    log("[order] " + order.getOrderno() + " inserted");
+                }else{
+                    log("[order] " + order.getOrderno() + " updated");
                 }
             }
         }catch(Exception e){
@@ -308,9 +338,36 @@ public class ControllerRest {
         }
     }
 
+    public void DownloadOrder(Boolean async){
+        if (async) {
+            GsonRequest<ModelOrder[]> gsonReq = new GsonRequest<>(url_order(), ModelOrder[].class,
+                    new Response.Listener<ModelOrder[]>() {
+                        @Override
+                        public void onResponse(ModelOrder[] response) {
+                            SaveOrders(response);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            log(error.toString());
+                        }
+                    }
+            );
+            this.controllerRequest.addToRequestQueue(gsonReq, url_order());
+        }else {
+            RequestFuture<ModelOrder[]> future = RequestFuture.newFuture();
+            GsonRequest<ModelOrder[]> gsonReq = new GsonRequest<>(url_order(), ModelOrder[].class, future, future);
+            this.controllerRequest.addToRequestQueue(gsonReq, url_order());
 
-
-
+            try {
+                ModelOrder[] response = future.get(30, TimeUnit.SECONDS);
+                SaveOrders(response);
+            } catch (InterruptedException|ExecutionException| TimeoutException e) {
+                log(e.getMessage());
+            }
+        }
+    }
 }
 
 
@@ -344,6 +401,8 @@ class AsyncRestRunner extends AsyncTask<Boolean, String, Void> {
         controllerRest.DownloadMaterial(async);
         controllerRest.DownloadProduct(async);
         controllerRest.DownloadCustomer(async);
+        publishProgress("download order");
+        controllerRest.DownloadOrder(async);
         return null;
     }
 }

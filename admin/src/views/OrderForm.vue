@@ -132,12 +132,13 @@
 				</el-radio-group>
 			</el-form-item>
 
-			<el-form-item label="Teknisi" prop="area">
-				<el-select v-model="form.user" filterable placeholder="Select" value-key="id" >
-					<el-option v-for="item in users" :key="item.id" :label="item.nama" :value="item">
+			<el-form-item label="Teknisi">
+				<el-select v-model="form.user" filterable placeholder="Select" value-key="uid" >
+					<el-option v-for="item in users" :key="item.nama" :label="item.nama" :value="item">
 					</el-option>
 				</el-select>
 			</el-form-item>
+
 		</el-form>
 
 
@@ -240,10 +241,10 @@
 
 				var vm = this;
 				axios.get(this.$rest_url + '/order/' + id).then(function(response) {
-					vm.form = response.data;
+					var res = response.data;
 
-					if (!vm.form.customer){
-						vm.form.customer = {
+					if (!res.customer){
+						res.customer = {
 							id : 0,
 							nama : '',
 							alamat : '',
@@ -253,6 +254,12 @@
 							inetnumber : ''
 						};
 					}
+					if (!res.user){
+						res.user = null;
+					}
+
+					vm.form = res;
+
 				})
 				.catch(function(error) {
 					vm.showErrorMessage(error);
@@ -326,3 +333,14 @@
 		margin-left: 150px;
 	}*/
 </style>
+
+
+<!-- var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` is now reactive
+
+vm.b = 2
+// `vm.b` is NOT reactive -->

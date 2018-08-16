@@ -24,6 +24,7 @@ public class ModelOrder extends BaseModel {
 
     @TableField
     private int customer_id;
+    private String customer_uid;
 
     @TableField
     private String phone;
@@ -33,9 +34,11 @@ public class ModelOrder extends BaseModel {
 
     @TableField
     private int area_id;
+    private String area_uid;
 
     @TableField
     private int product_id;
+    private String product_uid;
 
     @TableField
     private String jenis_order;
@@ -132,5 +135,29 @@ public class ModelOrder extends BaseModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCustomer_uid() {
+        return customer_uid;
+    }
+
+    public void setCustomer_uid(String customer_uid) {
+        this.customer_uid = customer_uid;
+    }
+
+    public String getArea_uid() {
+        return area_uid;
+    }
+
+    public void setArea_uid(String area_uid) {
+        this.area_uid = area_uid;
+    }
+
+    public String getProduct_uid() {
+        return product_uid;
+    }
+
+    public void setProduct_uid(String product_uid) {
+        this.product_uid = product_uid;
     }
 }

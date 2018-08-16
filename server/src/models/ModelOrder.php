@@ -3,7 +3,8 @@
 	require_once '../src/models/ModelCustomer.php';
 	require_once '../src/models/ModelArea.php';
 	require_once '../src/models/ModelProduct.php';
-
+	require_once '../src/models/ModelUser.php';
+	
 	class ModelOrder extends BaseModel{
 		public static function getTableName(){
 			return 'orders';
@@ -22,7 +23,8 @@
 
 			if (isset($obj->customer_id)) $obj->customer =  ModelCustomer::retrieve($obj->customer_id);
 			if (isset($obj->area_id)) $obj->area =  ModelArea::retrieve($obj->area_id);
-			if (isset($obj->product_id)) $obj->product =  ModelProduct::retrieve($obj->product_id);			
+			if (isset($obj->product_id)) $obj->product =  ModelProduct::retrieve($obj->product_id);
+			if (isset($obj->user_id)) $obj->user =  ModelUser::retrieve($obj->user_id);
 
 			return $obj;
 		}

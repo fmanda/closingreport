@@ -4,10 +4,18 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require_once '../src/models/ModelOrder.php';
 require_once '../src/classes/DB.php';
 
-$app->get('/order', function ($request, $response) {
+$app->get('/orderof/{teknisi_id}', function ($request, $response, $args) {
 	try{
-		$list = ModelOrder::retrieveList();
-		return json_encode($list);
+		$sql = "select a.*, b.uid as area_uid, c.uid as customer_uid, d.uid as product_uid
+			from orders a
+			inner join area b on a.area_id=b.id
+			inner join customer c on a.customer_id=c.id
+			inner join product d on a.product_id=d.id
+			inner join users e on a.user_id=e.id
+			where e.id = ". $args['teknisi_id'] ."
+			and a.status not in('CLOSED','CANCEL')";
+		$data = DB::openQUery($sql);
+		return json_encode($data);
 	}catch(Exception $e){
 		$msg = $e->getMessage();
 		return $response->withStatus(500)
@@ -23,8 +31,8 @@ $app->get('/order/{date1}/{date2}/{limit}/{page}/[{fieldname}/{keyword}]', funct
 		if (isset($args['keyword'])) $keyword = $args['keyword'];
 		if (isset($args['fieldname'])) $fieldname = $args['fieldname'];
 
-		$sql = "select a.*, b.nama as area, c.nama as customer, c.alamat, d.nama as product,
-			d.nama as teknisi
+		$sql = "select a.*, b.nama as area, c.nama as customer, c.alamat, d.kode as product,
+			e.nama as teknisi
 			from orders a
 			left join area b on a.area_id=b.id
 			left join customer c on a.customer_id=c.id

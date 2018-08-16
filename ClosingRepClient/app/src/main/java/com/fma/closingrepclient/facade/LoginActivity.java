@@ -150,11 +150,11 @@ public class LoginActivity extends AppCompatActivity {
         controllerSetting.updateSetting( "user_id", Integer.toString(response.getId()) );
 
         //area pakai id internetl
-        controllerSetting.updateSetting( "area_id", Integer.toString(modelArea.getId()) );
+        controllerSetting.updateSetting( "area_ id", Integer.toString(modelArea.getId()) );
         controllerSetting.updateSetting( "area", modelArea.getNama() );
 
         startActivity(new Intent(this, MainActivity.class));
-        finish();
+        //finish();
 
     }
 

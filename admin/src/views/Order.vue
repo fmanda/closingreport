@@ -35,7 +35,7 @@
 				</el-input>
 			</el-col>
 		</el-row>
-		<el-table :data="items"	stripe style="width:100%" border>
+		<el-table :data="items"	stripe style="width:100%" border :row-class-name="tableRowClassName">
 			<el-table-column type="expand">
 				<template scope="scope">
 					<el-button size="small" icon="edit" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -82,14 +82,14 @@
 					{fieldname : 'orderno', caption : 'Order No', width: 120},
 					{fieldname : 'tanggal', caption : 'Tanggal', width: 120},
 					{fieldname : 'product', caption : 'Layanan', width: 120},
-					{fieldname : 'jenis_order', caption : 'Jenis Order', width: 120},
-					{fieldname : 'area', caption : 'Area', width: 120},
+					{fieldname : 'jenis_order', caption : 'Jenis', width: 140},
 					{fieldname : 'status', caption : 'Status', width: 120},
 					{fieldname : 'customer', caption : 'Customer', width: 200},
 					{fieldname : 'alamat', caption : 'Alamat', width: 200},
 					{fieldname : 'phone', caption : 'No Telp', width: 120},
 					{fieldname : 'inetnumber', caption : 'No Internet', width: 120},
-					{fieldname : 'teknisi', caption : 'Teknisi', width: 120}
+					{fieldname : 'teknisi', caption : 'Teknisi', width: 120},
+					{fieldname : 'area', caption : 'Area', width: 120},
 				],
 				error : {
 					status : false,
@@ -234,6 +234,22 @@
 					vm.showErrorMessage(error);
 				});
 				vm.dialogVisible = false;
+			},
+			tableRowClassName(row, index) {
+				var item = this.items[index];
+				if (item.status == 'OPEN') {
+					return 'open-row';
+				} else if (item.status == 'PROCESS') {
+					return 'process-row';
+				} else if (item.status == 'PENDING') {
+					return 'process-row';
+				} else if (item.status == 'CLOSED') {
+					return 'closed-row';
+				} else if (item.status == 'CANCEL') {
+					return 'cancel-row';
+				}else{
+					return '';
+				}
 			}
 		}
 	}
@@ -248,5 +264,33 @@
 	}
 	.el-table{
 		font-size: 12px;
+	}
+
+	/* .el-table__header{
+		font-size: 22px !important;
+		background-color: #bdbdbd !important;
+	} */
+
+</style>
+
+<style>
+	.el-table .open-row {
+		background: #90caf9 ;
+	}
+
+	.el-table .process-row {
+		background: #dce775   ;
+	}
+
+	.el-table .closed-row {
+		background: #80cbc4 ;
+	}
+
+	.el-table .cancel-row {
+		background: #ff8a65 ;
+	}
+
+	.el-table .grayed-row{
+		background: #bdbdbd  ;
 	}
 </style>

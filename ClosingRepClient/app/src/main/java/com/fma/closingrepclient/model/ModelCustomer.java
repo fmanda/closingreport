@@ -1,7 +1,7 @@
 package com.fma.closingrepclient.model;
 
 
-/**
+import android.database.sqlite.SQLiteDatabase; /**
  * Created by fma on 8/11/2017.
  */
 
@@ -37,6 +37,13 @@ public class ModelCustomer extends BaseModel {
     private String inetnumber;
 
     private String area_uid;
+
+    public ModelCustomer(){
+        super();
+    }
+    public ModelCustomer(SQLiteDatabase readableDatabase, String customer_uid) {
+        super(readableDatabase, customer_uid);
+    }
 
     public String getUid() {
         return uid;

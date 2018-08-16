@@ -129,7 +129,7 @@ public class BaseActivity extends AppCompatActivity
         } else if (id == R.id.nav_material) {
             intent = new Intent(this, MaterialActivity.class);
         } else if (id == R.id.nav_order) {
-
+            intent = new Intent(this, OrderActivity.class);
         } else if (id == R.id.nav_tracking_customer) {
 
         } else if (id == R.id.nav_sync) {

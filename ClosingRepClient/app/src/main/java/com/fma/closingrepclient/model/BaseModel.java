@@ -14,6 +14,10 @@ import java.util.UUID;
 
 
 public class BaseModel implements Serializable {
+    public BaseModel(){
+
+    }
+
     @TableField
     protected int id = 0;
     public boolean restclient = true; //always true, for post rest data
@@ -134,4 +138,8 @@ public class BaseModel implements Serializable {
         db.execSQL(this.generateSQLDelete());
     }
 
+
+    public BaseModel(SQLiteDatabase db,  String aUID) {
+        this.loadByUID(db, aUID);
+    }
 }
