@@ -281,7 +281,10 @@
 				}
 				this.form.area_id = this.form.area.id;
 				this.form.product_id = this.form.product.id;
-				if (this.form.customer) this.form.customer_id = this.form.customer.id;
+				if (this.form.customer) {
+					this.form.customer_id = this.form.customer.id;
+					this.form.customer.area_id = this.form.area_id;
+				}
 				if (this.form.user) this.form.user_id = this.form.user.id;
 
 				// this.$refs.form.validate((valid) => {

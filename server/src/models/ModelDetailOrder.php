@@ -88,7 +88,7 @@
 	class ModelDetailOrderMaterial extends BaseModel{
 		public static function getFields(){
 			return array(
-				"uid", "detail_order_id", "material_id", "qty", "serialnumber"
+				"uid", "detailorder_id", "material_id", "qty", "serialnumber"
 			);
 		}
 

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.fma.closingrepclient.model.ModelArea;
 import com.fma.closingrepclient.model.ModelCustomer;
+import com.fma.closingrepclient.model.ModelDetailOrder;
+import com.fma.closingrepclient.model.ModelDetailOrderMaterial;
 import com.fma.closingrepclient.model.ModelMaterial;
 import com.fma.closingrepclient.model.ModelOrder;
 import com.fma.closingrepclient.model.ModelProduct;
@@ -52,6 +54,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(new ModelMaterial().generateMetaData());
         db.execSQL(new ModelSetting().generateMetaData());
         db.execSQL(new ModelUser().generateMetaData());
+        db.execSQL(new ModelDetailOrder().generateMetaData());
+        db.execSQL(new ModelDetailOrderMaterial().generateMetaData());
         ModelSetting.initMetaData(db);
     }
 
@@ -69,6 +73,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(new ModelMaterial().generateDropMetaData());
         db.execSQL(new ModelSetting().generateDropMetaData());
         db.execSQL(new ModelUser().generateDropMetaData());
+        db.execSQL(new ModelDetailOrder().generateDropMetaData());
+        db.execSQL(new ModelDetailOrderMaterial().generateDropMetaData());
     }
 
     public void resetDatabase(SQLiteDatabase db){

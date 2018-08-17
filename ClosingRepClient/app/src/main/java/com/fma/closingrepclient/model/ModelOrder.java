@@ -1,6 +1,10 @@
 package com.fma.closingrepclient.model;
 
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.fma.closingrepclient.helper.DBHelper;
+
 import java.util.Date;
 
 /**
@@ -52,6 +56,9 @@ public class ModelOrder extends BaseModel {
     public String getUid() {
         return uid;
     }
+
+    public ModelCustomer customer;
+    public ModelProduct product;
 
     public void setUid(String uid) {
         this.uid = uid;
@@ -159,5 +166,21 @@ public class ModelOrder extends BaseModel {
 
     public void setProduct_uid(String product_uid) {
         this.product_uid = product_uid;
+    }
+
+    public void loadCustomer(SQLiteDatabase db) {
+        customer = new ModelCustomer();
+        customer.loadFromDB(db, this.getCustomer_id());
+    }
+
+    public void loadProduct(SQLiteDatabase db) {
+        product = new ModelProduct();
+        product.loadFromDB(db, this.getProduct_id());
+    }
+
+    public Boolean focused = Boolean.FALSE;
+
+    public ModelOrder() {
+        this.tanggal = new Date();
     }
 }

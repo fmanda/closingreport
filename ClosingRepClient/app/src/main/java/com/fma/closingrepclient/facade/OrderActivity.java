@@ -1,5 +1,6 @@
 package com.fma.closingrepclient.facade;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,5 +33,18 @@ public class OrderActivity extends BaseActivity {
         rvOrder = findViewById(R.id.rvOrder);
         rvOrder.setLayoutManager(new GridLayoutManager(this, 1));
         rvOrder.setAdapter(productAdapter);
+
+        productAdapter.setItemClickListener(new OrderAdapter.ItemClickListener() {
+            @Override
+            public void onClick(ModelOrder modelOrder) {
+                infoOrder(modelOrder);
+            }
+        });
+    }
+
+    private void infoOrder(ModelOrder modelOrder){
+        Intent intent = new Intent(this, OrderInfoActivity.class);
+        intent.putExtra("order", modelOrder);
+        startActivity(intent);
     }
 }

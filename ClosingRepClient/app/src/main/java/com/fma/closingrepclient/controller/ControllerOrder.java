@@ -33,6 +33,7 @@ public class ControllerOrder {
             while (cursor.moveToNext()) {
                 ModelOrder order = new ModelOrder();
                 order.loadFromCursor(cursor);
+                order.loadCustomer(rdb);
                 orders.add(order);
             }
             return orders;

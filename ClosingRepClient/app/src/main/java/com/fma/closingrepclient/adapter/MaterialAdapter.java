@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fma.closingrepclient.R;
 import com.fma.closingrepclient.model.ModelArea;
@@ -21,6 +22,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     private Context context;
     private List<ModelMaterial> materials;
     private LayoutInflater mInflater;
+    private ItemClickListener itemClickListener;
 
     public MaterialAdapter(Context context, List<ModelMaterial> areas) {
         this.context = context;
@@ -38,8 +40,20 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.modelMaterial = materials.get(i);
-        viewHolder.txtKode.setText(viewHolder.modelMaterial.getMerk());
+        viewHolder.txtMerk.setText(viewHolder.modelMaterial.getMerk());
         viewHolder.txtNama.setText(viewHolder.modelMaterial.getNama());
+        viewHolder.txtJenis.setText(viewHolder.modelMaterial.getJenis());
+
+        final ModelMaterial material = viewHolder.modelMaterial;
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            //
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) itemClickListener.onItemClick(material);
+//                Toast.makeText(context, material.getNama(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -48,23 +62,28 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         public ModelMaterial modelMaterial;
         public TextView txtNama;
-        public TextView txtKode;
+        public TextView txtMerk;
+        public TextView txtJenis;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            txtKode = itemView.findViewById(R.id.txtKode);
+            txtMerk = itemView.findViewById(R.id.txtMerk);
             txtNama = itemView.findViewById(R.id.txtNama);
+            txtJenis = itemView.findViewById(R.id.txtJenis);
         }
-//
-        @Override
-        public void onClick(View v) {
-//            if (mClickListener != null) mClickListener.onItemClick(v, getAdapterPosition());
-        }
+
     }
 
+    public interface ItemClickListener {
+        void onItemClick(ModelMaterial material);
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener){
+        this.itemClickListener = itemClickListener;
+    }
 
 }
 

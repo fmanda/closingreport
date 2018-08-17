@@ -36,7 +36,9 @@
 
 		public static function retrieve($id){
 			$obj = parent::retrieve($id);
-			$obj->area =  ModelArea::retrieve($obj->area_id);
+			if (isset($obj->area_id)){
+				$obj->area =  ModelArea::retrieve($obj->area_id);
+			}
 			return $obj;
 		}
 

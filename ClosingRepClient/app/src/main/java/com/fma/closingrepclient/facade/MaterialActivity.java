@@ -15,7 +15,7 @@ import com.fma.closingrepclient.model.ModelMaterial;
 import java.util.List;
 
 public class MaterialActivity extends BaseActivity {
-    private ControllerMaterial controllerMaterialArea;
+    private ControllerMaterial controllerMaterial;
     private List<ModelMaterial> materials;
     private MaterialAdapter materialAdapter;
     private RecyclerView rvMaterial;
@@ -25,8 +25,8 @@ public class MaterialActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_material, this.mainframe);
 
-        controllerMaterialArea = new ControllerMaterial(this);
-        materials = controllerMaterialArea.getMaterials();
+        controllerMaterial = new ControllerMaterial(this);
+        materials = controllerMaterial.getMaterials();
         materialAdapter = new MaterialAdapter(this, materials);
 
         rvMaterial = findViewById(R.id.rvMaterial);

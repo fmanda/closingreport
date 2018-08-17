@@ -4,7 +4,7 @@
 	require_once '../src/models/ModelArea.php';
 	require_once '../src/models/ModelProduct.php';
 	require_once '../src/models/ModelUser.php';
-	
+
 	class ModelOrder extends BaseModel{
 		public static function getTableName(){
 			return 'orders';
@@ -38,9 +38,9 @@
 			$db = new DB();
 			$db = $db->connect();
 			$db->beginTransaction();
-			try {
-				static::saveObjToDB($obj, $db);
+			try {				
 				static::updateCustomer($obj, $db);
+				static::saveObjToDB($obj, $db);
 				$db->commit();
 				$db = null;
 			} catch (Exception $e) {
