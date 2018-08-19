@@ -47,6 +47,7 @@ public class DetailOrderActivity extends AppCompatActivity {
     private RadioGroup rgStatus;
     private RadioButton rbClosed;
     private RadioButton rbPending;
+    private RadioButton rbCancel;
     private Button btnAdd;
 
     private DetailMaterialAdapter detailMaterialAdapter;
@@ -75,6 +76,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         rgStatus = findViewById(R.id.rgStatus);
         rbClosed = findViewById(R.id.rbClosed);
         rbPending = findViewById(R.id.rbPending);
+        rbCancel = findViewById(R.id.rbCancel);
         btnAdd = findViewById(R.id.btnAdd);
 
         detailMaterialAdapter = new DetailMaterialAdapter(this, detailOrder.items);
@@ -164,8 +166,11 @@ public class DetailOrderActivity extends AppCompatActivity {
         txtKeterangan.setText(detailOrder.getKeterangan());
         rgStatus.check(R.id.rbClosed);
 
-        if (modelOrder.getStatus().equals("PENDING"))
+        if (modelOrder.getStatus().equals("PENDING")) {
             rgStatus.check(R.id.rbPending);
+        }else if (modelOrder.getStatus().equals("CANCEL")){
+            rgStatus.check(R.id.rbCancel);
+        }
 
         detailMaterialAdapter.notifyDataSetChanged();
 
@@ -200,6 +205,11 @@ public class DetailOrderActivity extends AppCompatActivity {
         if (rbPending.isChecked()){
             modelOrder.setStatus("PENDING");
         }
+
+        if (rbCancel.isChecked()){
+            modelOrder.setStatus("CANCEL");
+        }
+
         detailOrder.setStatus(modelOrder.getStatus());
 
         detailOrder.saveToDBAll(db.getWritableDatabase());

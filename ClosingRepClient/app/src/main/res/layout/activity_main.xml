@@ -2,18 +2,264 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".facade.BaseActivity">
 
-    <Button
-        android:id="@+id/btnTest"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/caption_test"
-        android:visibility="visible" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/colorOpen"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu_list" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/total_order_open"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txtOrderOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="sans-serif-condensed"
+                android:text="TextView"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                tools:text="@string/zero" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="@color/colorClosed"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu_available" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/total_order_closed"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txtOrderClosed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/zero"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="@android:color/holo_red_light"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu_busy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/total_order_cancel"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txtOrderCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/zero"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="@color/colorProcess"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu_note" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/total_order"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txtOrderTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/zero"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="@color/colorPending"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu_checkall" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/data_not_uploaded"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txtNotUploaded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:fontFamily="sans-serif-condensed"
+                android:textAlignment="viewEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                tools:text="@string/zero" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 </LinearLayout>

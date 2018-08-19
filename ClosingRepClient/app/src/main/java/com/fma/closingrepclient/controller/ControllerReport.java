@@ -68,6 +68,79 @@ public class ControllerReport {
 
     public ControllerReport(Context context) {
         this.context = context;
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+    }
+
+
+    public Integer getTotalOrderOpen(){
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+
+        String sql = "select count(*) from orders where status in ('OPEN','PROCESS','PENDING')";
+
+        Cursor cursor = rdb.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }else{
+            return 0;
+        }
+    }
+
+    public Integer getTotalOrderClosed(){
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+
+        String sql = "select count(*) from orders where status in ('CLOSED')";
+
+        Cursor cursor = rdb.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }else{
+            return 0;
+        }
+    }
+
+    public Integer getTotalOrderCancel(){
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+
+        String sql = "select count(*) from orders where status in ('CANCEL')";
+
+        Cursor cursor = rdb.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }else{
+            return 0;
+        }
+    }
+
+
+
+    public Integer getTotalOrder(){
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+
+        String sql = "select count(*) from orders";
+
+        Cursor cursor = rdb.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }else{
+            return 0;
+        }
+    }
+
+    public Integer getNotUploadedOrder(){
+        DBHelper db = DBHelper.getInstance(context);
+        SQLiteDatabase rdb = db.getReadableDatabase();
+        String sql = "select count(*) from detailorder where uploaded=0";
+        Cursor cursor = rdb.rawQuery(sql, null);
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }else{
+            return 0;
+        }
     }
 }
 

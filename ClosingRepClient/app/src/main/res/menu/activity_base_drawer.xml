@@ -8,6 +8,10 @@
             android:id="@+id/nav_sync"
             android:icon="@drawable/ic_menu_sync"
             android:title="@string/sinkronisasi" />
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_dashboard"
+            android:title="@string/dashboard" />
         <!--<item-->
             <!--android:id="@+id/nav_gallery"-->
             <!--android:icon="@drawable/ic_menu_gallery"-->

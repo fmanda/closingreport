@@ -67,4 +67,12 @@
     <string name="sd">s/d</string>
     <string name="periode">Periode</string>
     <string name="pemakaian_bahan">Pemakaian Bahan</string>
+    <string name="total_order_open">Total Order Open</string>
+    <string name="total_order_closed">Total Order Closed</string>
+    <string name="total_order_pending">Total Order Pending</string>
+    <string name="total_order">Total Order</string>
+    <string name="data_not_uploaded">Data belum Terupload</string>
+    <string name="total_order_cancel">Total Order Cancel</string>
+    <string name="update_order">Update Order</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

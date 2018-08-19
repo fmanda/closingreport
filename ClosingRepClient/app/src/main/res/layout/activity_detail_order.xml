@@ -32,7 +32,8 @@
                 android:text="From Detail Order"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -345,6 +346,18 @@
                         android:text="@string/pending"
                         android:textSize="14sp" />
 
+                    <RadioButton
+                        android:id="@+id/rbCancel"
+                        style="@android:style/Widget.Material.Light.CompoundButton.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@string/cancel"
+                        android:textSize="14sp" />
+
                 </RadioGroup>
 
                 <LinearLayout
@@ -418,15 +431,16 @@
                 android:id="@+id/txtCaption2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="@color/darkBackground"
                 android:fontFamily="sans-serif-condensed"
-                android:padding="5dp"
+                android:padding="7dp"
                 android:text="Detail Bahan"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textSize="12sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvItem"

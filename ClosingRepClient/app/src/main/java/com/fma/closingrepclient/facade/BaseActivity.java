@@ -137,6 +137,8 @@ public class BaseActivity extends AppCompatActivity
             intent = new Intent(this, ReportMaterialActivity.class);
         } else if (id == R.id.nav_sync) {
             intent = new Intent(this, SyncActivity.class);
+        }else if (id == R.id.nav_dashboard){
+            intent = new Intent(this, MainActivity.class);
         }
 
 //        if (intent != null){
