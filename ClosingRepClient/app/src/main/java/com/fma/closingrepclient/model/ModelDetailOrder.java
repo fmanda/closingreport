@@ -5,9 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.fma.closingrepclient.helper.RandomString;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by fma on 8/11/2017.
@@ -18,6 +21,9 @@ public class ModelDetailOrder extends BaseModel {
     public String getTableName() {
         return "detailorder";
     }
+
+    @TableField
+    private String uid;
 
     @TableField
     private Date tanggal = new Date();
@@ -44,6 +50,9 @@ public class ModelDetailOrder extends BaseModel {
 
     @TableField
     private String keterangan;
+
+    @TableField
+    private Integer uploaded;
 
     public ModelOrder order;
 
@@ -127,6 +136,7 @@ public class ModelDetailOrder extends BaseModel {
     }
 
     public void reLoadAll(SQLiteDatabase db){
+        this.loadOrder(db);
         this.items.clear();
         String sql = "select * from detailordermaterial where detailorder_id = " + String.valueOf(this.getId());
 
@@ -134,6 +144,7 @@ public class ModelDetailOrder extends BaseModel {
         while (cursor.moveToNext()){
             ModelDetailOrderMaterial material = new ModelDetailOrderMaterial();
             material.loadFromCursor(cursor);
+            material.loadMaterial(db);
             this.items.add(material);
         }
     }
@@ -150,6 +161,7 @@ public class ModelDetailOrder extends BaseModel {
         }
 
     }
+
 
     public void saveToDBAll(SQLiteDatabase db) {
         Log.d("DB","Order.saveToDBAll");
@@ -172,5 +184,28 @@ public class ModelDetailOrder extends BaseModel {
         }
     }
 
+    public ModelDetailOrder() {
+        this.generateNoBukti();
+    }
 
+    public void generateNoBukti(){
+        RandomString gen = new RandomString(12, ThreadLocalRandom.current());
+        this.nobukti = gen.nextString();
+    }
+
+    public Integer getUploaded() {
+        return uploaded;
+    }
+
+    public void setUploaded(Integer uploaded) {
+        this.uploaded = uploaded;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }

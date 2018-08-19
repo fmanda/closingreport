@@ -35,7 +35,7 @@
 				</el-input>
 			</el-col>
 		</el-row>
-		<el-table :data="items"	stripe style="width:100%" border :row-class-name="tableRowClassName">
+		<el-table :data="items"	style="width:100%" border :row-class-name="tableRowClassName">
 			<el-table-column type="expand">
 				<template scope="scope">
 					<el-button size="small" icon="edit" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>

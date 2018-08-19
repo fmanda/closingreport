@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="@android:color/holo_blue_dark"
+                android:background="@color/darkBackground"
                 android:fontFamily="sans-serif-condensed"
                 android:padding="5dp"
                 android:text="From Detail Order"
@@ -43,23 +43,72 @@
                 <TextView
                     android:id="@+id/txtCaption"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
-                    android:text="#No Order"
-                    android:textAlignment="viewStart"
+                    android:text="No Bukti"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtDiv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="@string/divider"
+                    android:textColor="@android:color/white"
+                    tools:ignore="DuplicateIds" />
+
+                <TextView
+                    android:id="@+id/txtNoBukti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="5dp"
+                    android:text="@string/sample_text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtCaption"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@color/darkBackground"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="#No Order"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDiv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:background="@color/darkBackground"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/divider"
                     android:textColor="@android:color/white"
@@ -69,10 +118,14 @@
                     android:id="@+id/txtOrderNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
                     android:padding="5dp"
-                    android:text="@string/sample_text" />
+                    android:text="@string/sample_text"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -84,24 +137,26 @@
                 <TextView
                     android:id="@+id/txtCaption"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="Tanggal"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:ignore="DuplicateIds" />
 
                 <TextView
                     android:id="@+id/txtDiv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/divider"
                     android:textColor="@android:color/white"
@@ -111,10 +166,14 @@
                     android:id="@+id/txtOrderDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-condensed"
                     android:padding="5dp"
-                    android:text="@string/sample_text" />
+                    android:text="@string/sample_text"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -128,13 +187,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="ODP"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:ignore="DuplicateIds" />
 
                 <TextView
@@ -142,8 +202,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/divider"
                     android:textColor="@android:color/white"
@@ -153,6 +214,9 @@
                     android:id="@+id/txtODP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
@@ -161,7 +225,7 @@
                     android:paddingTop="0dp"
                     android:singleLine="false"
                     android:text="@string/sample_text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -176,13 +240,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="QRCode"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:ignore="DuplicateIds" />
 
                 <TextView
@@ -190,8 +255,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/divider"
                     android:textColor="@android:color/white"
@@ -201,6 +267,9 @@
                     android:id="@+id/txtQRCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
@@ -209,7 +278,7 @@
                     android:paddingTop="0dp"
                     android:singleLine="false"
                     android:text="@string/sample_text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -223,13 +292,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="Status"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:ignore="DuplicateIds" />
 
                 <TextView
@@ -237,8 +307,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/divider"
                     android:textColor="@android:color/white"
@@ -257,22 +328,22 @@
                         style="@android:style/Widget.Material.Light.CompoundButton.RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_margin="5dp"
                         android:checked="false"
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/closed"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <RadioButton
                         android:id="@+id/rbPending"
                         style="@android:style/Widget.Material.Light.CompoundButton.RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_margin="5dp"
                         android:checked="false"
                         android:fontFamily="sans-serif-condensed"
                         android:text="@string/pending"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                 </RadioGroup>
 
@@ -298,14 +369,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:lines="2"
                     android:padding="5dp"
                     android:text="Keterangan"
-                    android:textAlignment="viewStart"
+                    android:textAlignment="textEnd"
                     android:textColor="@android:color/white"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:ignore="DuplicateIds" />
 
                 <TextView
@@ -313,8 +385,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/darkBackground"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
                     android:lines="2"
                     android:padding="5dp"
                     android:text="@string/divider"
@@ -325,6 +398,9 @@
                     android:id="@+id/txtKeterangan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
@@ -334,7 +410,7 @@
                     android:paddingTop="0dp"
                     android:singleLine="false"
                     android:text="@string/sample_text"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -344,7 +420,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="2"
-                android:background="@android:color/holo_blue_dark"
+                android:background="@color/darkBackground"
                 android:fontFamily="sans-serif-condensed"
                 android:padding="5dp"
                 android:text="Detail Bahan"
@@ -363,9 +439,10 @@
 
             <Button
                 android:id="@+id/btnAdd"
-                style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="wrap_content"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
                 android:fontFamily="sans-serif-condensed"
                 android:text="@string/tambah_material"
                 android:textSize="12sp"

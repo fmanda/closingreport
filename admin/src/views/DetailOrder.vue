@@ -9,6 +9,28 @@
 			@close="error.status = false"
 			>
 		</el-alert>
+		<el-dialog title="Detail Pemakaian Bahan"
+			:visible.sync="dialogVisible"
+			size="small"
+			>
+
+			<el-table :data="detailorder.items"	stripe style="width:100%" border>
+				<el-table-column
+					v-for="item in detailfields"
+					sortable
+					:key="item.fieldname"
+					:prop="item.fieldname"
+					:label="item.caption"
+					:width="item.width">
+				</el-table-column>
+
+			</el-table>
+
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="dialogVisible = false">Tutup</el-button>
+			</span>
+		</el-dialog>
+
 		<el-row>
 
 			<el-col :span="6">
@@ -36,12 +58,25 @@
 			</el-col>
 		</el-row>
 		<el-table :data="items"	stripe style="width:100%" border>
-			<!-- <el-table-column type="expand">
+			<el-table-column type="expand">
 				<template scope="scope">
-					<el-button size="small" icon="edit" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-					<el-button size="small" icon="delete" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+					<!-- <p> Detail Penggunaan Bahan :</p> -->
+					<!-- <el-button size="small" icon="detail" @click="">Detail Penggunaan Bahan</el-button> -->
+					<el-table :data="scope.row.items" stripe style="width:100%" border>
+						<el-table-column
+							v-for="item in detailfields"
+							sortable
+							:key="item.fieldname"
+							:prop="item.fieldname"
+							:label="item.caption"
+							:width="item.width">
+						</el-table-column>
+					</el-table>
+
+					<!-- <el-button size="small" icon="detail" @click="loadDetail(scope.$index, scope.row)">Lihat Detail Bahan</el-button> -->
+					<!-- <el-button size="small" icon="delete" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button> -->
 				</template>
-			</el-table-column> -->
+			</el-table-column>
 			<el-table-column
 				v-for="item in fields"
 				sortable
@@ -51,7 +86,7 @@
 				:width="item.width">
 			</el-table-column>
 		</el-table>
-		<el-row type="flex">
+		<!-- <el-row type="flex">
 			<el-button size="small" icon="plus" type="primary" @click="handleNew()" style="margin-top:10px">Tambah</el-button>
 			<span style="margin-left:10px">
 				<el-pagination
@@ -64,7 +99,7 @@
 					style = "margin-top:10px">
 				</el-pagination>
 			</span>
-		</el-row>
+		</el-row> -->
 	</div>
 </template>
 
@@ -78,8 +113,11 @@
 				dialogVisible : false,
 				selectedPeriod : [],
 				items : [],
+				detailorder : {
+					items  : []
+				},
 				fields : [
-					{fieldname : 'nobukti', caption : 'No Bukti', width: 120},
+					{fieldname : 'nobukti', caption : 'No Bukti', width: 150},
 					{fieldname : 'teknisi', caption : 'Teknisi', width: 120},
 					{fieldname : 'tanggal', caption : 'Tanggal', width: 120},
 					{fieldname : 'orderno', caption : 'Order No', width: 120},
@@ -87,6 +125,13 @@
 					{fieldname : 'customer', caption : 'Customer', width: 150},
 					{fieldname : 'alamat', caption : 'Alamat', width: 200},
 					{fieldname : 'status', caption : 'Status', width: 120},
+				],
+				detailfields : [
+					{fieldname : 'material.nama', caption : 'Nama Bahan', width: 200},
+					{fieldname : 'material.jenis', caption : 'Jenis', width: 100},
+					{fieldname : 'material.merk', caption : 'Merk', width: 100},
+					{fieldname : 'serial', caption : 'MAC/Serial', width: 120},
+					{fieldname : 'qty', caption : 'Qty', width: 100}
 				],
 				error : {
 					status : false,
@@ -198,16 +243,28 @@
 					this.error.description = error;
 				}
 			},
-			// // handleEdit(index, item){
-			// // 	this.$router.push({
-			// // 	    path: '/order/' + item.id
-			// // 	})
-			// // },
-			// // handleNew(){
-			// // 	this.$router.push({
-			// // 	    path: '/order/0'
-			// // 	})
-			// // },
+			loadDetail(index, item){
+				var url = this.$rest_url + '/detailorder/' 	+ item.id;
+				var vm = this;
+
+				axios.get(url)
+				.then(function(response) {
+					vm.detailorder = response.data;
+
+					for (var item in vm.detailorder.items) {
+						console.log(item);
+							// item.material_name = item.material.nama;
+							// item.jenis = item.material.jenis;
+							// item.merk = item.material.merk;
+					}
+
+					vm.dialogVisible = true;
+					console.log(vm.detail_order);
+				})
+				.catch(function(error) {
+					vm.showErrorMessage(error);
+				});
+			},
 			// // handleDelete(index, item){
 			// // 	var vm = this;
 			// // 	this.$confirm('Anda yakin menghapus data ini?', 'Warning', {

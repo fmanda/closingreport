@@ -26,7 +26,7 @@ $app->get('/detailorder/{date1}/{date2}/{limit}/{page}/[{fieldname}/{keyword}]',
 		$sql = "select a.*, b.orderno, c.nama as customer, c.alamat, d.nama as area, e.nama as teknisi
 				from detailorder a
 				inner join orders b on a.order_id = b.id
-				inner join customer c on b.customer_id = b.id
+				inner join customer c on b.customer_id = c.id
 				inner join area d on b.area_id = d.id
 				inner join users e on a.user_id = e.id";
 
@@ -47,6 +47,19 @@ $app->get('/detailorder/{date1}/{date2}/{limit}/{page}/[{fieldname}/{keyword}]',
 		$sql = $sql . " and a.tanggal between '". $args['date1'] . "' and '" . $args['date2']. "'";
 
 		$data = DB::paginateQuery($sql, $args['limit'], $args['page']);
+		$rows = $data->data;
+
+		foreach($rows as $obj){
+			$obj->items = ModelDetailOrderMaterial::retrieveList('detailorder_id = '. $obj->id);
+
+			//additional property :
+			foreach($obj->items as $item){
+				if (isset($item->material_id)) $item->material =  ModelMaterial::retrieve($item->material_id);
+			}
+		}
+
+
+
 		return json_encode($data);
 	}catch(Exception $e){
 		$msg = $e->getMessage();

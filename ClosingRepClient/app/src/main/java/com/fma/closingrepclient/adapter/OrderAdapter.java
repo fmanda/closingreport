@@ -56,6 +56,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         viewHolder.txtOrderDate.setText(formatter.format(viewHolder.order.getTanggal()));
         viewHolder.txtJenis.setText(viewHolder.order.getJenis_order());
         viewHolder.txtStatus.setText(viewHolder.order.getStatus());
+//        viewHolder.lnvOrder.setBackgroundColor(ContextCompat.getColor(context, R.color.colorOpen));
 
         switch (viewHolder.order.getStatus()) {
             case "OPEN":

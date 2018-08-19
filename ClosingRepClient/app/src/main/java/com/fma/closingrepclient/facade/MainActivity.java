@@ -23,6 +23,6 @@ public class MainActivity extends BaseActivity {
 //                Toast.makeText(MainActivity.this, "TEST", Toast.LENGTH_SHORT).show();
 //            }
 //        });
-        startActivity(new Intent(this, OrderActivity.class));
+        startActivity(new Intent(this, SyncActivity.class));
     }
 }

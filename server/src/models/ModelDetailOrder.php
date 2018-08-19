@@ -15,6 +15,12 @@
 		public static function retrieve($id){
 			$obj = parent::retrieve($id);
 			if (isset($obj)) $obj->items = ModelDetailOrderMaterial::retrieveList('detailorder_id = '. $obj->id);
+
+			//additional property :
+			foreach($obj->items as $item){
+				if (isset($item->material_id)) $item->material =  ModelMaterial::retrieve($item->material_id);
+			}
+
 			return $obj;
 		}
 
@@ -53,6 +59,10 @@
 					$item->detailorder_id = $obj->id;
 					ModelDetailOrderMaterial::saveObjToDB($item, $db);
 				}
+
+				$sql = "update orders set status = '". $obj->status ."' where id = ". $obj->order_id;
+				$db->prepare($sql)->execute();
+
 				$db->commit();
 				$db = null;
 

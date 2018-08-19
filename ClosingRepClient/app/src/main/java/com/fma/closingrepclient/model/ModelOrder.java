@@ -51,6 +51,9 @@ public class ModelOrder extends BaseModel {
     private int user_id;
 
     @TableField
+    private Integer uploaded;
+
+    @TableField
     private String status;
 
     public String getUid() {
@@ -182,5 +185,14 @@ public class ModelOrder extends BaseModel {
 
     public ModelOrder() {
         this.tanggal = new Date();
+        this.uploaded = 0;
+    }
+
+    public Integer getUploaded() {
+        return uploaded;
+    }
+
+    public void setUploaded(Integer uploaded) {
+        this.uploaded = uploaded;
     }
 }

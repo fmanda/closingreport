@@ -23,13 +23,21 @@ public class ControllerCustomer {
         this.context = context;
     }
 
-    public List<ModelCustomer> getCustomers(){
+    public List<ModelCustomer> getCustomers(String filter){
         try {
             List<ModelCustomer> customers = new ArrayList<ModelCustomer>();
 
+            String sql = "select * from customer";
+            sql += " where 1=1";
+
+            if (!filter.equals("")){
+                sql += " and (nama like '%" + filter + "%'";
+                sql += " or alamat like '%" + filter + "%')";
+            }
+
             DBHelper db = DBHelper.getInstance(context);
             SQLiteDatabase rdb = db.getReadableDatabase();
-            Cursor cursor = rdb.rawQuery("select * from customer", null);
+            Cursor cursor = rdb.rawQuery(sql, null);
             while (cursor.moveToNext()) {
                 ModelCustomer customer = new ModelCustomer();
                 customer.loadFromCursor(cursor);

@@ -50,4 +50,21 @@
     <string name="del">del</string>
     <string name="tambah_material">Tambah Bahan</string>
     <string name="add">add</string>
+    <string name="all">All</string>
+    <string name="open">Open</string>
+    <string name="search_hint_order">Filter By Nomor / Pelanggan / Alamat</string>
+    <string name="alamat">Alamat</string>
+    <string name="custphone">No HP</string>
+    <string name="no_order">No Order</string>
+    <string name="customer">Customer</string>
+    <string name="status">Status</string>
+    <string name="no_bukti">No Bukti</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="uploaded">uploaded</string>
+    <string name="realisasi_order">Realisasi Order</string>
+    <string name="total_qty">Total Qty</string>
+    <string name="kode">Kode</string>
+    <string name="sd">s/d</string>
+    <string name="periode">Periode</string>
+    <string name="pemakaian_bahan">Pemakaian Bahan</string>
 </resources>

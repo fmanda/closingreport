@@ -49,13 +49,12 @@
                     android:padding="5dp"
                     android:text="@string/nama"
                     android:textAlignment="viewStart"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="60dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:orientation="vertical"
@@ -80,7 +79,7 @@
                     android:inputType="number"
                     android:text="@string/zero"
                     android:textAlignment="textEnd"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -110,7 +109,7 @@
                     android:inputType="textPersonName"
                     android:text="0000-0000-0000-0000"
                     android:textAlignment="viewStart"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

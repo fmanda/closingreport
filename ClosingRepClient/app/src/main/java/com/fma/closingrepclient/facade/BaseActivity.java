@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fma.closingrepclient.R;
+import com.fma.closingrepclient.adapter.ReportMaterialAdapter;
 import com.fma.closingrepclient.controller.ControllerSetting;
 
 public class BaseActivity extends AppCompatActivity
@@ -130,12 +131,12 @@ public class BaseActivity extends AppCompatActivity
             intent = new Intent(this, MaterialActivity.class);
         } else if (id == R.id.nav_order) {
             intent = new Intent(this, OrderActivity.class);
-        } else if (id == R.id.nav_tracking_customer) {
-
+        } else if (id == R.id.nav_detail_order) {
+            intent = new Intent(this, ListDetailOrderActivity.class);
+        } else if (id == R.id.nav_material_report) {
+            intent = new Intent(this, ReportMaterialActivity.class);
         } else if (id == R.id.nav_sync) {
             intent = new Intent(this, SyncActivity.class);
-        } else if (id == R.id.nav_daily_report) {
-
         }
 
 //        if (intent != null){

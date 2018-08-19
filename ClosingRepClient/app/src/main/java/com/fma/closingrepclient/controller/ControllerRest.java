@@ -1,6 +1,7 @@
 package com.fma.closingrepclient.controller;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -11,10 +12,12 @@ import com.fma.closingrepclient.helper.DBHelper;
 import com.fma.closingrepclient.helper.GsonRequest;
 import com.fma.closingrepclient.model.ModelArea;
 import com.fma.closingrepclient.model.ModelCustomer;
+import com.fma.closingrepclient.model.ModelDetailOrder;
 import com.fma.closingrepclient.model.ModelMaterial;
 import com.fma.closingrepclient.model.ModelOrder;
 import com.fma.closingrepclient.model.ModelProduct;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -75,7 +78,7 @@ public class ControllerRest {
 //        this.base_url = "http://" + controllerSetting.getSettingStr("rest_url") + "/";
     }
 
-    private String base_url(){
+    protected String base_url(){
         return "http://" + controllerSetting.getSettingStr("rest_url") + "/";
     }
 
@@ -101,6 +104,10 @@ public class ControllerRest {
 
     private String url_order(){
         return base_url() + "orderof/" + this.user_id;
+    }
+
+    private String url_detailorder(){
+        return base_url() + "detailorderclient";
     }
 
     private void log(String s) {
@@ -368,6 +375,55 @@ public class ControllerRest {
             }
         }
     }
+
+
+    public void UploadDetailOrder(Boolean async){
+        ControllerDetailOrder controllerDetailOrder = new ControllerDetailOrder(this.context);
+        List<ModelDetailOrder> detailOrders = controllerDetailOrder.getDetailOrders("",-1);
+        final SQLiteDatabase db = DBHelper.getInstance(this.context).getReadableDatabase();
+        final SQLiteDatabase dbw = DBHelper.getInstance(this.context).getWritableDatabase();
+
+
+        for (final ModelDetailOrder detailOrder : detailOrders) {
+            detailOrder.prepareUpload(db);
+            detailOrder.setUser_id(this.user_id);
+            if (async) {
+                GsonRequest<ModelDetailOrder> gsonReq = new GsonRequest<>(url_detailorder(), detailOrder,
+                        new Response.Listener<ModelDetailOrder>() {
+                            @Override
+                            public void onResponse(ModelDetailOrder response) {
+                                detailOrder.setUid(response.getUid());
+                                detailOrder.setUploaded(1);
+                                detailOrder.saveToDB(dbw);
+                                log("[detail_order] " + detailOrder.getNobukti() + " uploaded");
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                log(error.toString());
+                            }
+                        }
+                );
+                this.controllerRequest.addToRequestQueue(gsonReq, url_detailorder());
+            } else {
+                RequestFuture<ModelDetailOrder> future = RequestFuture.newFuture();
+                GsonRequest<ModelDetailOrder> gsonReq = new GsonRequest<>(url_detailorder(), detailOrder, future, future);
+                this.controllerRequest.addToRequestQueue(gsonReq, url_detailorder());
+
+                try {
+                    ModelDetailOrder response = future.get(30, TimeUnit.SECONDS);
+                    detailOrder.setUid(response.getUid());
+                    detailOrder.setUploaded(1);
+                    detailOrder.saveToDB(dbw);
+                    log("[detail_order] " + detailOrder.getNobukti() + " uploaded");
+
+                } catch (InterruptedException | ExecutionException | TimeoutException e) {
+                    log(e.getMessage());
+                }
+            }
+        }
+    }
 }
 
 
@@ -397,11 +453,16 @@ class AsyncRestRunner extends AsyncTask<Boolean, String, Void> {
     @Override
     protected Void doInBackground(Boolean... booleans) {
         boolean async = booleans[0];
+        publishProgress("Connecting to Rest API : " + controllerRest.base_url());
+        publishProgress("Upload Detail Order");
+        controllerRest.UploadDetailOrder(async);
+
+        publishProgress("Download Master");
         controllerRest.DownloadArea(async);
         controllerRest.DownloadMaterial(async);
         controllerRest.DownloadProduct(async);
         controllerRest.DownloadCustomer(async);
-        publishProgress("download order");
+        publishProgress("Download Order");
         controllerRest.DownloadOrder(async);
         return null;
     }

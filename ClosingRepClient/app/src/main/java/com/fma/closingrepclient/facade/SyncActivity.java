@@ -30,6 +30,8 @@ public class SyncActivity extends BaseActivity {
                 syncData();
             }
         });
+
+        syncData();
     }
 
     private void syncData(){

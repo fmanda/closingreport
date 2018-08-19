@@ -24,12 +24,30 @@ public class ControllerOrder {
     }
 
     public List<ModelOrder> getOrders(){
-        try {
+        return this.getOrders("","");
+    }
+
+    public List<ModelOrder> getOrders(String filter, String filterStatus){
+//        try {
             List<ModelOrder> orders = new ArrayList<ModelOrder>();
 
             DBHelper db = DBHelper.getInstance(context);
             SQLiteDatabase rdb = db.getReadableDatabase();
-            Cursor cursor = rdb.rawQuery("select * from orders", null);
+            String sql = "select a.* from orders a inner join customer b on a.customer_id = b.id";
+            sql += " where 1=1";
+
+            if (!filter.equals("")){
+                sql += " and (a.orderno like '%" + filter + "%'";
+                sql += " or b.nama like '%" + filter + "%'";
+                sql += " or b.alamat like '%" + filter + "%')";
+            }
+
+            if (!filterStatus.equals("")){
+                sql += " and a.status in (" + filterStatus + ")";
+            }
+            sql += " order by a.id desc limit 1000";
+
+            Cursor cursor = rdb.rawQuery(sql, null);
             while (cursor.moveToNext()) {
                 ModelOrder order = new ModelOrder();
                 order.loadFromCursor(cursor);
@@ -37,10 +55,10 @@ public class ControllerOrder {
                 orders.add(order);
             }
             return orders;
-        }catch(Exception e){
-            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
-        }
-        return null;
+//        }catch(Exception e){
+//            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+//        }
+//        return null;
     }
 
 

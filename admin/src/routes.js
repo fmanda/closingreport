@@ -43,6 +43,7 @@ let routes = [
 			{ path: '/area', component: Area, name: 'Area', iconCls:'fa fa-building'},
 			{ path: '/user', component: User, name: 'User', iconCls:'fa fa-sitemap'},
 			{ path: '/product', component: Product, name: 'Product', iconCls:'fa fa-tags'},
+			{ path: '/material', component: Material, name: 'Bahan', iconCls:'fa fa-tags'},
 			{ path: '/customer', component: Customer, name: 'Customer', iconCls:'fa fa-user'},
 					// { path: '/customer/:id', component: CustomerForm, name: 'CustomerForm' , hidden: true },
 					// { path: '/product/:id', component: ProductForm, name: 'ProductForm' , hidden: true },

@@ -38,6 +38,7 @@ public class DetailOrderActivity extends AppCompatActivity {
     private DBHelper db;
 
     private TextView txtOrderNo;
+    private TextView txtNoBukti;
     private TextView txtOrderDate;
     private TextView txtODP;
     private TextView txtQRCode;
@@ -65,6 +66,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         }
 
         txtOrderNo = findViewById(R.id.txtOrderNo);
+        txtNoBukti = findViewById(R.id.txtNoBukti);
         txtOrderDate = findViewById(R.id.txtOrderDate);
         txtODP = findViewById(R.id.txtODP);
         txtQRCode = findViewById(R.id.txtQRCode);
@@ -130,6 +132,16 @@ public class DetailOrderActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
+            if (extras.containsKey("detailorder")) {
+                detailOrder = (ModelDetailOrder) intent.getSerializableExtra("detailorder");
+                detailOrder.reLoadAll(db.getReadableDatabase());
+
+                if (detailOrder.getNobukti().equals(""))  detailOrder.generateNoBukti();
+                modelOrder = detailOrder.order;
+
+                detailMaterialAdapter = new DetailMaterialAdapter(this, detailOrder.items);
+                rvItem.setAdapter(detailMaterialAdapter);
+            }
             if (extras.containsKey("order")) {
                 modelOrder = (ModelOrder) intent.getSerializableExtra("order");
             }
@@ -145,11 +157,17 @@ public class DetailOrderActivity extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy hh:mm", new Locale("id", "ID"));
 
         txtOrderNo.setText(modelOrder.getOrderno());
+        txtNoBukti.setText(detailOrder.getNobukti());
         txtOrderDate.setText(formatter.format(modelOrder.getTanggal()));
         txtODP.setText(detailOrder.getOdp());
         txtQRCode.setText(detailOrder.getQrcode());
         txtKeterangan.setText(detailOrder.getKeterangan());
         rgStatus.check(R.id.rbClosed);
+
+        if (modelOrder.getStatus().equals("PENDING"))
+            rgStatus.check(R.id.rbPending);
+
+        detailMaterialAdapter.notifyDataSetChanged();
 
     }
 

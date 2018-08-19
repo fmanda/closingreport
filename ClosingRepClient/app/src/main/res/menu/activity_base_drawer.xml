@@ -51,13 +51,17 @@
                 android:icon="@drawable/ic_menu_order"
                 android:title="@string/data_order" />
             <item
-                android:id="@+id/nav_daily_report"
+                android:id="@+id/nav_detail_order"
                 android:icon="@drawable/ic_menu_report"
-                android:title="@string/laporan_harian" />
+                android:title="@string/realisasi_order" />
             <item
-                android:id="@+id/nav_tracking_customer"
-                android:icon="@drawable/ic_menu_tracking"
-                android:title="@string/tracking_customer" />
+                android:id="@+id/nav_material_report"
+                android:icon="@drawable/ic_menu_report"
+                android:title="@string/pemakaian_bahan" />
+            <!--<item-->
+                <!--android:id="@+id/nav_tracking_customer"-->
+                <!--android:icon="@drawable/ic_menu_tracking"-->
+                <!--android:title="@string/tracking_customer" />-->
         </menu>
     </item>
 

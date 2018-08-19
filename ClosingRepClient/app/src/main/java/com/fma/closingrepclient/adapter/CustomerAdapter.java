@@ -38,8 +38,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.modelCustomer = customers.get(i);
-        viewHolder.txtPhone.setText(viewHolder.modelCustomer.getPhone());
+        viewHolder.txtAlamat.setText(viewHolder.modelCustomer.getAlamat());
         viewHolder.txtNama.setText(viewHolder.modelCustomer.getNama());
+        viewHolder.txtCustPhone.setText(viewHolder.modelCustomer.getCustphone());
     }
 
     @Override
@@ -51,12 +52,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ModelCustomer modelCustomer;
         public TextView txtNama;
-        public TextView txtPhone;
+        public TextView txtAlamat;
+        public TextView txtCustPhone;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            txtPhone = itemView.findViewById(R.id.txtPhone);
+            txtAlamat = itemView.findViewById(R.id.txtAlamat);
             txtNama = itemView.findViewById(R.id.txtNama);
+            txtCustPhone = itemView.findViewById(R.id.txtCustPhone);
         }
 //
         @Override
