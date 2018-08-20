@@ -7,6 +7,9 @@ import App from './App.vue'
 import 'font-awesome/css/font-awesome.min.css'
 import locale from 'element-ui/lib/locale/lang/en'
 
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.compact.css';
+
 var CONFIG = require('../config.json');
 
 Vue.use(ElementUI,  { locale })

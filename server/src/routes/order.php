@@ -4,6 +4,24 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require_once '../src/models/ModelOrder.php';
 require_once '../src/classes/DB.php';
 
+$app->get('/orderdashboard', function ($request, $response, $args) {
+	try{
+		$sql = "SELECT a.nama,
+					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID) AS total_order,
+					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID AND STATUS IN('CLOSED')) AS total_closed,
+					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID AND STATUS IN('CANCEL')) AS total_cancel
+					FROM AREA A";
+
+		$data = DB::openQuery($sql);
+		return json_encode($data, JSON_NUMERIC_CHECK);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
 $app->get('/orderof/{teknisi_id}', function ($request, $response, $args) {
 	try{
 		$sql = "select a.*, b.uid as area_uid, c.uid as customer_uid, d.uid as product_uid
