@@ -7,7 +7,7 @@ import Login from './views/Login.vue'
 import Area from './views/Area.vue'
 import Material from './views/Material.vue'
 import Customer from './views/Customer.vue'
-// import CustomerForm from './views/CustomerForm.vue'
+import Dashboard from './views/Dashboard.vue'
 import Product from './views/Product.vue'
 // import ProductForm from './views/ProductForm.vue'
 // import User from './views/Info.vue'
@@ -31,7 +31,7 @@ let routes = [
 				name: 'Dashboard',
         iconCls: 'fa fa-bar-chart',
         children: [
-            // { path: '/Dashboard', component: User, name: 'Sales', iconCls:'fa fa-bar-chart'},
+            { path: '/', component: Dashboard, name: 'Dashboard', iconCls:'fa fa-bar-chart'}
         ]
     },
 	{
@@ -40,11 +40,11 @@ let routes = [
 				name: 'Master',
         iconCls: 'fa fa-tags',
         children: [
-			{ path: '/area', component: Area, name: 'Area', iconCls:'fa fa-building'},
-			{ path: '/user', component: User, name: 'User', iconCls:'fa fa-sitemap'},
-			{ path: '/product', component: Product, name: 'Product', iconCls:'fa fa-tags'},
-			{ path: '/material', component: Material, name: 'Bahan', iconCls:'fa fa-tags'},
-			{ path: '/customer', component: Customer, name: 'Customer', iconCls:'fa fa-user'},
+					{ path: '/area', component: Area, name: 'Area', iconCls:'fa fa-building'},
+					{ path: '/user', component: User, name: 'User', iconCls:'fa fa-sitemap'},
+					{ path: '/product', component: Product, name: 'Product', iconCls:'fa fa-tags'},
+					{ path: '/material', component: Material, name: 'Bahan', iconCls:'fa fa-tags'},
+					{ path: '/customer', component: Customer, name: 'Customer', iconCls:'fa fa-user'},
 					// { path: '/customer/:id', component: CustomerForm, name: 'CustomerForm' , hidden: true },
 					// { path: '/product/:id', component: ProductForm, name: 'ProductForm' , hidden: true },
 					// { path: '/ordercategory', component: OrderCategory, name: 'Order Category', iconCls:'fa fa-tags'},
@@ -57,8 +57,8 @@ let routes = [
         iconCls: 'fa fa-credit-card-alt',
         children: [
             { path: '/order', component: Order, name: 'Order', iconCls:'fa fa-credit-card-alt'},
-				{ path: '/order/:id', component: OrderForm, name: 'OrderForm' , hidden: true },
-			{ path: '/detailorder', component: DetailOrder, name: 'Realisasi Order', iconCls:'fa fa-credit-card-alt'},
+						{ path: '/order/:id', component: OrderForm, name: 'OrderForm' , hidden: true },
+						{ path: '/detailorder', component: DetailOrder, name: 'Realisasi Order', iconCls:'fa fa-credit-card-alt'},
         ]
     },
 	{
