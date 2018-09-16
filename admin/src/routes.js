@@ -14,7 +14,8 @@ import Product from './views/Product.vue'
 import Order from './views/Order.vue'
 import OrderForm from './views/OrderForm.vue'
 import DetailOrder from './views/DetailOrder.vue'
-// import OrderCategory from './views/OrderCategory.vue'
+import ReportOrder from './views/ReportOrder.vue'
+import ReportMaterial from './views/ReportMaterial.vue'
 // { path: '/hidden', component: Info, name: 'Customer', hidden: true  },
 
 
@@ -67,18 +68,19 @@ let routes = [
 				name: 'Reports',
         iconCls: 'fa fa-file-text',
         children: [
-            // { path: '/reports', component: User, name: 'Sales Report', iconCls:'fa fa-file-text'},
+            { path: '/reportorder', component: ReportOrder, name: 'Orders Report', iconCls:'fa fa-file-text'},
+			{ path: '/reportmaterial', component: ReportMaterial, name: 'Pemakaian Bahan', iconCls:'fa fa-file-text'},
         ]
     },
-	{
-        path: '/',
-        component: Home,
-				name: 'Setting',
-        iconCls: 'fa fa-id-card-o',
-        children: [
-            // { path: '/user', component: User, name: 'User', iconCls:'fa fa-users'},
-        ]
-    },
+	// {
+    //     path: '/',
+    //     component: Home,
+	// 			name: 'Setting',
+    //     iconCls: 'fa fa-id-card-o',
+    //     children: [
+    //         // { path: '/user', component: User, name: 'User', iconCls:'fa fa-users'},
+    //     ]
+    // },
 	{
         path: '/404',
         component: NotFound,

@@ -379,7 +379,7 @@ public class ControllerRest {
 
     public void UploadDetailOrder(Boolean async){
         ControllerDetailOrder controllerDetailOrder = new ControllerDetailOrder(this.context);
-        List<ModelDetailOrder> detailOrders = controllerDetailOrder.getDetailOrders("",-1);
+        List<ModelDetailOrder> detailOrders = controllerDetailOrder.getDetailOrders("",0);
         final SQLiteDatabase db = DBHelper.getInstance(this.context).getReadableDatabase();
         final SQLiteDatabase dbw = DBHelper.getInstance(this.context).getWritableDatabase();
 

@@ -1,13 +1,4 @@
-#Mon Aug 20 01:46:55 ICT 2018
-path.3=classes.dex
-path.2=classes.dex
-path.1=classes.dex
+#Mon Sep 17 00:20:06 ICT 2018
+base.0=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\33
 path.0=classes.dex
-renamed.3=classes4.dex
-renamed.2=classes3.dex
-renamed.1=classes2.dex
 renamed.0=classes.dex
-base.3=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\29
-base.2=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\30
-base.1=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\28
-base.0=D\:\\PROJECT\\ClosingReport\\ClosingRepClient\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\31

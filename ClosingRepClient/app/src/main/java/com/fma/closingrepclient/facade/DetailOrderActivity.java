@@ -197,6 +197,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         detailOrder.setQrcode(txtQRCode.getText().toString());
         detailOrder.setKeterangan(txtKeterangan.getText().toString());
         detailOrder.setOdp(txtODP.getText().toString());
+        detailOrder.setUploaded(0);
 
         if (rbClosed.isChecked()){
             modelOrder.setStatus("CLOSED");
