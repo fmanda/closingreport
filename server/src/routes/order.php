@@ -6,11 +6,11 @@ require_once '../src/classes/DB.php';
 
 $app->get('/orderdashboard', function ($request, $response, $args) {
 	try{
-		$sql = "SELECT a.nama,
-					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID) AS total_order,
-					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID AND STATUS IN('CLOSED')) AS total_closed,
-					(SELECT COUNT(*) FROM ORDERS WHERE AREA_ID = A.ID AND STATUS IN('CANCEL')) AS total_cancel
-					FROM AREA A";
+		$sql = "select a.nama,
+					(select count(*) from orders where area_id = a.id) as total_order,
+					(select count(*) from orders where area_id = a.id and status in('CLOSED')) as total_closed,
+					(select count(*) from orders where area_id = a.id and status in('CANCEL')) as total_cancel
+					from area a";
 
 		$data = DB::openQuery($sql);
 		return json_encode($data, JSON_NUMERIC_CHECK);
