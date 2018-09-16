@@ -107,6 +107,18 @@ $app->delete('/order/{id}', function (Request $request, Response $response) {
 	}
 });
 
+$app->post('/delete_order/{id}', function (Request $request, Response $response) {
+	$id = $request->getAttribute('id');
+	try{
+		ModelOrder::deleteFromDB($id);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
 // $app->post('/orderfromclient', function ($request, $response) {
 // 	$json = $request->getBody();
 // 	$obj = json_decode($json);

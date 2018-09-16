@@ -166,7 +166,8 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(CONFIG.rest_url + '/units/' + id)
+				// axios.delete(CONFIG.rest_url + '/units/' + id)
+				axios.post(CONFIG.rest_url + '/delete_units/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData();

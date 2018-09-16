@@ -111,6 +111,18 @@ $app->delete('/detailorder/{id}', function (Request $request, Response $response
 	}
 });
 
+$app->post('/delete_detailorder/{id}', function (Request $request, Response $response) {
+	$id = $request->getAttribute('id');
+	try{
+		ModelDetailOrder::deleteFromDB($id);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
 $app->post('/detailorderclient', function ($request, $response) {
 	$json = $request->getBody();
 	$obj = json_decode($json);

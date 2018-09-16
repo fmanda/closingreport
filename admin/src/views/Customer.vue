@@ -235,7 +235,8 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(this.$rest_url + '/customer/' + id)
+				// axios.delete(this.$rest_url + '/customer/' + id) //del call blocked by hosting
+				axios.post(this.$rest_url + '/delete_customer/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

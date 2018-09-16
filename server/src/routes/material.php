@@ -58,6 +58,19 @@ $app->delete('/material/{id}', function (Request $request, Response $response) {
 	}
 });
 
+$app->post('/delete_material/{id}', function (Request $request, Response $response) {
+	$id = $request->getAttribute('id');
+	try{
+		ModelMaterial::deleteFromDB($id);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
+
 $app->get('/material/{limit}/{page}/[{fieldname}/{keyword}]', function ($request, $response, $args) {
 	try{
 		$keyword = '';

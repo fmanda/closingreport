@@ -95,4 +95,18 @@ $app->delete('/area/{id}', function (Request $request, Response $response) {
 	}
 });
 
+$app->post('/delete_area/{id}', function (Request $request, Response $response) {
+	$id = $request->getAttribute('id');
+	try{
+		ModelArea::deleteFromDB($id);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
+
+
+
 //units

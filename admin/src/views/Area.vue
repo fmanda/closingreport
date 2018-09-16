@@ -121,7 +121,7 @@
 				axios.get(url)
 				.then(function(response) {
 					vm.items = response.data.data;
-					vm.totalrecord = parseInt(response.data.totalrecord);					
+					vm.totalrecord = parseInt(response.data.totalrecord);
 				})
 				.catch(function(error) {
 					vm.showErrorMessage(error);
@@ -194,7 +194,8 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(this.$rest_url + '/area/' + id)
+				// axios.delete(this.$rest_url + '/area/' + id) //del call blocked by hosting
+				axios.post(this.$rest_url + '/delete_area/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

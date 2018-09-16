@@ -229,7 +229,8 @@
 			deleteData(item){
 				var id = item.id;
 				var vm = this;
-				axios.delete(this.$rest_url + '/user/' + id)
+				// axios.delete(this.$rest_url + '/user/' + id)
+				axios.post(this.$rest_url + '/delete_user/' + id)
 				.then(function(response) {
 					vm.$message('Data berhasil dihapus');
 					vm.refreshData(false);

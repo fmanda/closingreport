@@ -57,3 +57,16 @@ $app->delete('/ordercategory/{id}', function (Request $request, Response $respon
 			->write($msg);
 	}
 });
+
+
+$app->post('/delete_ordercategory/{id}', function (Request $request, Response $response) {
+	$id = $request->getAttribute('id');
+	try{
+		ModelOrderCategory::deleteFromDB($id);
+	}catch(Exception $e){
+		$msg = $e->getMessage();
+		return $response->withStatus(500)
+			->withHeader('Content-Type', 'text/html')
+			->write($msg);
+	}
+});
